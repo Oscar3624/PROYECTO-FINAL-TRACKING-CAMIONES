@@ -96,6 +96,13 @@ public class Vehiculo implements Serializable{
 	public void setNumeroMotor(String numeroMotor) {
 		this.numeroMotor = numeroMotor;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Vehiculo [patente=" + patente + ", color=" + color + ", titular=" + titular + ", marca=" + marca
+				+ ", modelo=" + modelo + ", tipo=" + tipo + ", numeroChasis=" + numeroChasis + ", numeroMotor="
+				+ numeroMotor + "]";
+	}
+	
+	
 }

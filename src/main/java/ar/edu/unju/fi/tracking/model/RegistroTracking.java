@@ -70,6 +70,12 @@ public class RegistroTracking implements Serializable{
 	public void setDetalleLugarRegistro(String detalleLugarRegistro) {
 		this.detalleLugarRegistro = detalleLugarRegistro;
 	}
+
+	@Override
+	public String toString() {
+		return "RegistroTracking [fechaHora=" + fechaHora + ", vehiculo=" + vehiculo + ", tripulantes=" + tripulantes
+				+ ", localidad=" + localidad + ", detalleLugarRegistro=" + detalleLugarRegistro + "]";
+	}
 	
 	
 }

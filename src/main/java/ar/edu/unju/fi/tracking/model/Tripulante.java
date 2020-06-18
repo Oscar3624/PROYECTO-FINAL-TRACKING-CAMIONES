@@ -58,4 +58,11 @@ public class Tripulante implements Serializable{
 		this.nacionalidad = nacionalidad;
 	}
 
+	@Override
+	public String toString() {
+		return "Tripulante [documento=" + documento + ", apellido=" + apellido + ", nombres=" + nombres
+				+ ", nacionalidad=" + nacionalidad + "]";
+	}
+	
+	
 }
