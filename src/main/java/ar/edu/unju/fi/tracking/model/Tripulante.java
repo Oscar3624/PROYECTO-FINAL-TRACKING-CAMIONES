@@ -2,18 +2,44 @@ package ar.edu.unju.fi.tracking.model;
 
 import java.io.Serializable;
 
-public class Tripulante implements Serializable{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
+@Table(name = "tripulantes")
+public class Tripulante implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private long id;
+	@Column(name = "DOCUMENTO")
 	private String documento;
+	@Column(name = "APELLIDO")
 	private String apellido;
+	@Column(name = "NOMBRE")
 	private String nombres;
+	@Column(name = "NACIONALIDAD")
 	private String nacionalidad;
-	
+
+	// RELACION DE MAPEO
+	@OneToOne(mappedBy = "tripulante", fetch = FetchType.LAZY)
+	private RegistroTracking registro;
+
 	public Tripulante() {
 		// TODO Auto-generated constructor stub
 	}
@@ -24,6 +50,14 @@ public class Tripulante implements Serializable{
 		this.apellido = apellido;
 		this.nombres = nombres;
 		this.nacionalidad = nacionalidad;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getDocumento() {
@@ -63,6 +97,5 @@ public class Tripulante implements Serializable{
 		return "Tripulante [documento=" + documento + ", apellido=" + apellido + ", nombres=" + nombres
 				+ ", nacionalidad=" + nacionalidad + "]";
 	}
-	
-	
+
 }

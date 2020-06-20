@@ -2,19 +2,49 @@ package ar.edu.unju.fi.tracking.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
+@Table(name="vehiculos")
 public class Vehiculo implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private long id;
+	@Column(name = "PATENTE")
 	private String patente;
+	@Column(name = "COLOR")
 	private String color;
+	@Column(name = "TITULAR")
 	private String titular;
+	@Column(name = "MARCA")
 	private String marca;
+	@Column(name = "MODELO")
 	private String modelo;
+	@Column(name = "TIPO")
 	private String tipo;
+	@Column(name = "NUMERO_CHASIS")
 	private String numeroChasis;
+	@Column(name = "NUMERO_MOTOR")
 	private String numeroMotor;
+	
+	//RELACION DE MAPEO
+	@OneToOne(mappedBy = "vehiculo" , fetch = FetchType.LAZY)
+	private RegistroTracking registro;
 	
 	public Vehiculo() {
 		// TODO Auto-generated constructor stub
@@ -31,6 +61,14 @@ public class Vehiculo implements Serializable{
 		this.tipo = tipo;
 		this.numeroChasis = numeroChasis;
 		this.numeroMotor = numeroMotor;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getPatente() {
