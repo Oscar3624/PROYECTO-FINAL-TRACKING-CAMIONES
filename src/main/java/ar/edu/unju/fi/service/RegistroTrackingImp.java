@@ -1,36 +1,20 @@
 package ar.edu.unju.fi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.repository.IRegistroTracking;
+import ar.edu.unju.fi.repository.IRegistroTrackingDAO;
 import ar.edu.unju.fi.tracking.model.RegistroTracking;
 
-@Repository
+@Service
 public class RegistroTrackingImp implements IRegistroTrackingService{
 	@Autowired
-	private IRegistroTracking iregistrotracking;
+	private IRegistroTrackingDAO registroTrackingDAOImp;
+
+	@Override
+	public void guardarRegistro(RegistroTracking registro) {
+		registroTrackingDAOImp.save(registro);
+		
+	};
 	
-	@Override
-	public void guardar() {
-		iregistrotracking.guardar();		
-	}
-
-	@Override
-	public RegistroTracking mostrar() {
-		RegistroTracking registrotracking= iregistrotracking.mostrar();
-		return registrotracking;
-	}
-
-	@Override
-	public void eliminar() {
-		iregistrotracking.eliminar();		
-	}
-
-	@Override
-	public RegistroTracking modificar() {
-		RegistroTracking registrotracking= iregistrotracking.modificar();
-		return registrotracking;
-	}
-
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 //import java.util.List;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,17 +33,18 @@ public class RegistroTracking implements Serializable{
 	@Column(name = "FECHA_HORA")
 	private LocalDateTime fechaHora;
 	@Autowired
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "VEHICULO_ID")
 	private Vehiculo vehiculo;
 	//private List<Tripulante> tripulantes;
 	
 	@Autowired
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "TRIPULANTE_ID")
 	private Tripulante tripulante;
+	
 	@Autowired
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "LOCALIDAD_ID")
 	private Localidad localidad;
 	private String detalleLugarRegistro;
@@ -62,10 +63,21 @@ public class RegistroTracking implements Serializable{
 		this.detalleLugarRegistro = detalleLugarRegistro;
 	}*/
 
+	public RegistroTracking(long id, LocalDateTime fechaHora, Vehiculo vehiculo, Tripulante tripulante,
+			Localidad localidad, String detalleLugarRegistro) {
+		super();
+		this.id = id;
+		this.fechaHora = fechaHora;
+		this.vehiculo = vehiculo;
+		this.tripulante = tripulante;
+		this.localidad = localidad;
+		this.detalleLugarRegistro = detalleLugarRegistro;
+	}	
 	
 	public long getId() {
 		return id;
 	}
+
 
 	public void setId(long id) {
 		this.id = id;
