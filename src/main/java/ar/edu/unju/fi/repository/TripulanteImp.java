@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unju.fi.tracking.model.Tripulante;
@@ -27,6 +29,12 @@ public class TripulanteImp implements ITripulante {
 
 	@Override
 	public Tripulante modificar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Tripulante> obtenerTripulante() {
 		// TODO Auto-generated method stub
 		return null;
 	}

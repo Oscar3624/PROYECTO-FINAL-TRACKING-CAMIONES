@@ -1,5 +1,7 @@
 package ar.edu.unju.fi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -32,6 +34,12 @@ public class TripulanteServiceImp implements ITripulanteService{
 	public Tripulante modificar() {
 		Tripulante tripulante= itripulante.modificar();
 		return tripulante;
+	}
+
+	@Override
+	public List<Tripulante> obtenerTripulante() {
+		// TODO Auto-generated method stub
+		return itripulante.obtenerTripulante();
 	}
 
 }
