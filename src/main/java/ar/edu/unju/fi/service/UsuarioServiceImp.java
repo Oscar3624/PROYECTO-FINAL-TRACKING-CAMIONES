@@ -1,38 +1,50 @@
 package ar.edu.unju.fi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.repository.IUsuario;
+import ar.edu.unju.fi.repository.IUsuarioDAO;
 import ar.edu.unju.fi.tracking.model.Usuario;
 
-@Repository
+@Service
 public class UsuarioServiceImp implements IUsuarioService{
+	
 	@Autowired
-	private IUsuario iusuario;
+	IUsuarioDAO usuarioDAO;
 	
 	@Override
-	public void guardar() {
+	public void guardar(Usuario usuario) {
 		// TODO Auto-generated method stub
-		iusuario.guardar();
+		usuarioDAO.save(usuario);
 	}
 
-	@Override
+ 	@Override
+ 
 	public Usuario mostrar() {
-		Usuario usuario= iusuario.mostrar();
-		return usuario;
+		//Usuario usuario= usuarioDAO.mostrar();
+		return null;
 	}
 
 	@Override
 	public void eliminar() {
-		iusuario.eliminar();
+		//usuarioDAO.eliminar();
 		
 	}
 
 	@Override
 	public Usuario modificar() {
-		Usuario usuario= iusuario.modificar();
-		return usuario;
+		//Usuario usuario= usuarioDAO.modificar();
+		return null;
+	}
+
+	@Override
+	public List<Usuario> obtenerUsuarios() {
+		// TODO Auto-generated method stub
+		
+		return usuarioDAO.findAll();
 	}
 
 }

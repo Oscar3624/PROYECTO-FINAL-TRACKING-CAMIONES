@@ -51,10 +51,10 @@ public class MainController {
 	}
 	
 	
-	@PostMapping("/save")
-	public String guardar(@Valid RegistroTracking registro, Model model  ) {
-		iRegistroTrackingImp.guardarRegistro(registro);
-		return "redirect:/Datos";
+	//@PostMapping("/save")
+	//public String guardar(@Valid RegistroTracking registro, Model model  ) {
+		//iRegistroTrackingImp.guardarRegistro(registro);
+		//return "redirect:/Datos";
 		
-	}
+	//}
 }
