@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Usuario</title>
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container">
+	
+		<div th:insert="layout/header :: header"></div>	
+		
+			<ul class="nav nav-tabs" role="tablist">
+				  <li class="nav-item">
+				    <a id="formulario-tab" role="tab" aria-controls="formulario" aria-selected="true" class="nav-link active" data-toggle="tab" href="#formulario">Formulario</a>
+				  </li>
+				  <li class="nav-item">
+				     <a id="lista-tab" role="tab" aria-controls="lista" aria-selected="false" class="nav-link" data-toggle="tab" href="#lista">Lista</a>
+				  </li>				  
+			</ul>
+			
+			<div class="tab-content">
+			
+				  <div class="tab-pane fade show active" id="formulario" role="tabpanel" aria-labelledby="formulario-tab">
+				  
+					  <div class="card">
+						  <div class="card-header">
+						    Alta Usuario
+						  </div>
+						  <div class="card-body">
+						    	<form class="form" autocomplete="off" th:action="@{/save}" th:object=${usuario} method="POST">
+						    		<div class="row">
+						    			<div class="col">
+										  <div class="form-group row">
+											    <label class="col-sm-2 col-form-label">Usuario:</label>
+											    <div class="col-sm-10">
+											      <input type="text" id="idUsuario" th:field="*{nombreUsuario}" placeholder="Ingrese Nombre Usuario">
+											    </div>
+										  </div>
+										  <div class="form-group row">
+											    <label class="col-sm-2 col-form-label">Password:</label>
+											    <div class="col-sm-10">
+											      <input type="password" id="idPassword" th:field="*{password}" placeholder="Ingrese Password">
+											    </div>
+										  </div>
+										   <div class="form-group row">
+											    <label class="col-sm-2 col-form-label">Nombre Real:</label>
+											    <div class="col-sm-10">
+											      <input type="text" id="idNombreReal" th:field="*{nombreReal}" placeholder="Ingrese Nombre Real">
+											    </div>
+										  </div>
+										   <div class="form-group row">
+											    <label class="col-sm-2 col-form-label">Apellido Real:</label>
+											    <div class="col-sm-10">
+											      <input type="text" id="idApellidoReal" th:field="*{apellidoReal}" placeholder="Ingrese Apellido Real">
+											    </div>
+										  </div>
+										  
+										  <!--  <div class="form-group row">
+											    <label class="col-sm-2 col-form-label">Tipo de Usuario:</label>
+											    <div class="col-sm-10">
+												     <select id="idTipoUsuario" th:field="*{tipoUsuario}" class="custom-select">
+													    <option selected>Elegir Usuario</option>
+													    <option value="consultor">Consultor</option>
+													    <option value="registrador">Registrador</option>
+													    <option value="bd">BD</option>
+													  </select>	    
+											    </div> -->
+										  </div>									  					    		
+						    			</div>  				    					    	
+						    		</div>
+						    		<!-- boton guardar usuario -->
+									<div class="col">
+										<input type="submit" value="Guardar"
+										   class="btn btn-success text-center ml-5 mt-5">
+									</div>	
+								</form>
+	  					  </div>
+					</div>
+					
+					
+					<div class="tab-pane fade " id="lista" role="tabpanel" aria-labelledby="lista-tab">
+								  <h2>Listado de Usuarios</h2>
+								   
+								  <table class="table table-hover">
+								    <thead>
+								      <tr>
+								        <th>ID</th>
+								      	<th>Usuario</th>
+								        <th>Nombre</th>
+								        <th>Apellido</th>
+								      	<th>Tipo Usuario</th>
+								      </tr>
+								    </thead>
+								    <tbody>
+								      <tr th:each = "usuario:${usuarios}">
+								        <td  th:text = "${usuario.id}"></td>
+								        <td  th:text = "${usuario.nombreUsuario}"></td>
+								        <td  th:text = "${usuario.nombreReal}"></td>
+								        <td  th:text = "${usuario.apellidoReal}"></td>
+								        <td  th:text = "${usuario.tipoUsuario}"></td>
+								         <td>
+								         	<a class="btn btn-warning">Editar</a>
+								         	<a class="btn btn-danger">Eliminar</a>
+								         </td>								      
+								      </tr>								      								      
+								    </tbody>
+								  </table>
+													
+					
+					</div>
+											 
+				  </div>				 
+			</div>
+			
+				
+			<div th:insert="layout/footer :: footer"></div>
+
+
+			<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>		
+			<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+			<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		
+</body>
+</html>
