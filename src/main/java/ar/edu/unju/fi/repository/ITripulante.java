@@ -12,6 +12,7 @@ public interface ITripulante {
 	public void eliminar();
 	public Tripulante modificar();
 	
-	@Query("from Tripulante T order by T.nombre")
+	@Query("from Tripulante T order by T.id")
 	public List<Tripulante> obtenerTripulante();
+	
 }

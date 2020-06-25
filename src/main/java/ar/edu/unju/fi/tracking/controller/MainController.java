@@ -56,5 +56,5 @@ public class MainController {
 		//iRegistroTrackingImp.guardarRegistro(registro);
 		//return "redirect:/Datos";
 		
-	//}
+//	}
 }

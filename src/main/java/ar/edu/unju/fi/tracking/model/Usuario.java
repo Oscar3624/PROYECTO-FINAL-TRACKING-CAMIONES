@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -26,17 +28,24 @@ public class Usuario implements Serializable{
 	@Column(name = "ID")
 	private long id;
 	
-	@Column(name = "NOMBRE_USUARIO")
+	@Column
+	(name = "NOMBRE_USUARIO")
+	@NotBlank(message="El nombre de usuario no puede quedar en blanco")
 	private String nombreUsuario;
 	
 	@Column(name = "PASSWORD")
+	@NotBlank
+	@Size(min=8, message="Su contraseña debe tener como mínimo 8 caracteres")
 	private String password;
 	
 	@Column(name = "NOMBRE")
+	@NotBlank(message="El nombre Real no puede quedar en blanco")
 	private String nombreReal;
 	
 	@Column(name = "APELLIDO")
+	@NotBlank(message="El Apellido real no puede quedar en blanco")
 	private String apellidoReal;
+	
 	
 	@Column(name = "TIPO")
 	private String tipoUsuario;
@@ -45,7 +54,7 @@ public class Usuario implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(String nombreUsuario, String password, String nombreReal, String apellidoReal, String tipoUsuario) {
+	public Usuario( @NotBlank String nombreUsuario,  String password,  String nombreReal,  String apellidoReal, String tipoUsuario) {
 		super();
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;

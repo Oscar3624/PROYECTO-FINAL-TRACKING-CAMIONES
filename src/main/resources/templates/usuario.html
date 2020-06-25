@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<!--  estos no tengo en el proyecto -->
+<link th:rel="stylesheet" th:href="@{/css/tempusdominus-bootstrap-4.min.css}"/>
+<link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.11.2/css/all.css} "/>
+
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>		
+<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+		
+<!--  estos no tengo en el proyecto -->
+<script th:src="@{/js/moment.min.js}"></script>		
+<script th:src="@{/js/tempusdominus-bootstrap-4.min.js}"></script>
+
 <meta charset="UTF-8">
 <title>Usuario</title>
 <link rel="stylesheet" type="text/css"
@@ -37,24 +49,28 @@
 											    <label class="col-sm-2 col-form-label">Usuario:</label>
 											    <div class="col-sm-10">
 											      <input type="text" id="idUsuario" th:field="*{nombreUsuario}" placeholder="Ingrese Nombre Usuario">
+											      <div class="alert-danger" th:if="${#fields.hasErrors('nombreUsuario')}" th:errors="*{usuario}">Name Error</div>
 											    </div>
 										  </div>
 										  <div class="form-group row">
 											    <label class="col-sm-2 col-form-label">Password:</label>
 											    <div class="col-sm-10">
 											      <input type="password" id="idPassword" th:field="*{password}" placeholder="Ingrese Password">
+											      <div class="alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>
 											    </div>
 										  </div>
 										   <div class="form-group row">
 											    <label class="col-sm-2 col-form-label">Nombre Real:</label>
 											    <div class="col-sm-10">
 											      <input type="text" id="idNombreReal" th:field="*{nombreReal}" placeholder="Ingrese Nombre Real">
+											      <div class="alert-danger" th:if="${#fields.hasErrors('nombreReal')}" th:errors="*{nombreReal}">Name Error</div>
 											    </div>
 										  </div>
 										   <div class="form-group row">
 											    <label class="col-sm-2 col-form-label">Apellido Real:</label>
 											    <div class="col-sm-10">
 											      <input type="text" id="idApellidoReal" th:field="*{apellidoReal}" placeholder="Ingrese Apellido Real">
+											      <div class="alert-danger" th:if="${#fields.hasErrors('apellidoReal')}" th:errors="*{apellidoReal}">Name Error</div>
 											    </div>
 										  </div>
 										  
@@ -72,10 +88,32 @@
 						    			</div>  				    					    	
 						    		</div>
 						    		<!-- boton guardar usuario -->
-									<div class="col">
-										<input type="submit" value="Guardar"
-										   class="btn btn-success text-center ml-5 mt-5">
-									</div>	
+									<div class="form-group row">
+								<div class="col-lg-12 text-center">
+									<a class="btn btn-secondary" th:href="@{'/cancelar'}">Cancelar</a>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAgregar">Guardar Usuario</button>
+								</div>
+							</div>
+							<div class="alert-danger text-center" th:if="${formUsuarioErrorMessage}" th:text="${formUsuarioErrorMessage}">Name Error</div>
+							
+							<!-- Modal Agregar -->
+							<div class="modal fade" id="modalAgregar" tabindex="-1"	role="dialog" aria-labelledby="agregarModalTitulo"	aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="agregarModalTitulo">Confirmar Agregar</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body"><h6>Are you sure you want to save this user?</h6></div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"	data-dismiss="modal">Close</button>
+											<input type="submit" class="btn btn-primary" value="Save Changes"  th:value="${editMode}?'Guardar Usuario':'Crear Usuario'">
+										</div>
+									</div>
+								</div>
+							</div>	
 								</form>
 	  					  </div>
 					</div>
@@ -119,9 +157,6 @@
 			<div th:insert="layout/footer :: footer"></div>
 
 
-			<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>		
-			<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
-			<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 		
 </body>
 </html>
