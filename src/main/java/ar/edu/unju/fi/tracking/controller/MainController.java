@@ -50,7 +50,11 @@ public class MainController {
 		return "prueba";
 	}
 	
-	
+	@RequestMapping ("/login")
+	public String login(Model model) {
+		
+		return "login";
+	}
 	//@PostMapping("/save")
 	//public String guardar(@Valid RegistroTracking registro, Model model  ) {
 		//iRegistroTrackingImp.guardarRegistro(registro);

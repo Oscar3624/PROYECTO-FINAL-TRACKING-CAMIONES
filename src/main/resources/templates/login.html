@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/estilos.css">
+</head>
+<body >
+
+<div th:insert="layout/header :: header"></div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			 <form class="px-4 py-3">
+			    <div class="form-group">
+			      <label for="usuario">Username</label>
+			      <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario">
+			    </div>
+			    <div class="form-group">
+			      <label for="Password1">Password</label>
+			      <input type="password" class="form-control" id="Password1" placeholder="Password">
+			    </div>
+			    <div class="form-group">
+				  <div>
+					  <a href="#">Olvido su password?</a>
+				  </div>
+			    </div>
+	    		<button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+	  		</form>
+			
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+
+<div th:insert="layout/footer :: footer"></div>
+
+</body>
+</html>
