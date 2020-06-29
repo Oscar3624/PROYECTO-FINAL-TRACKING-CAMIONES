@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../static/css/estilos.css">
-</head>
+<meta charset="utf-8">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="css/estilos.css">
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/4.5.0/css/bootstrap.min.css"></head>
 <body >
 
 <div th:insert="layout/header :: header"></div>
@@ -14,14 +14,14 @@
 	<div class="row">
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
-			 <form class="px-4 py-3">
+			 <form class="px-4 py-3" th:object="${usuarioDelForm}" th:action="@{/login}" method="post">
 			    <div class="form-group">
 			      <label for="usuario">Username</label>
-			      <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario">
+			      <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" name="username">
 			    </div>
 			    <div class="form-group">
 			      <label for="Password1">Password</label>
-			      <input type="password" class="form-control" id="Password1" placeholder="Password">
+			      <input type="password" class="form-control" id="Password1" placeholder="Password" name="password">
 			    </div>
 			    <div class="form-group">
 				  <div>
@@ -29,9 +29,16 @@
 				  </div>
 			    </div>
 	    		<button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+	    		<div class="alert-danger text-center"
+				th:if="${formLoginErrorMessage}" th:text="${formLoginErrorMessage}">Name
+				Error</div>
 	  		</form>
 			
 		</div>
+		<div th:if="${param.error}" class="alert alert-danger" role="alert">
+			Combinación Invalida de Usuario y Contraseña</div>
+		<div th:if="${param.logout}" class="alert alert-success" role="alert">
+			Ha salido del Sistema. Gracias!</div>
 		<div class="col-md-4"></div>
 	</div>
 </div>

@@ -48,7 +48,7 @@ public class Usuario implements Serializable{
 	
 	
 	@Column(name = "TIPO")
-	private String tipoUsuario;
+	private String tipoUsuario;//consultor, registrador, bd
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub

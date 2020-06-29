@@ -3,7 +3,7 @@ package ar.edu.unju.fi.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.repository.IUsuarioDAO;
@@ -18,6 +18,9 @@ public class UsuarioServiceImp implements IUsuarioService{
 	@Override
 	public void guardar(Usuario usuario) {
 		// TODO Auto-generated method stub
+		String pw = usuario.getPassword();
+		BCryptPasswordEncoder bCriptPasswordEncoder = new BCryptPasswordEncoder(4);
+		usuario.setPassword(bCriptPasswordEncoder.encode(pw));
 		usuarioDAO.save(usuario);
 	}
 
