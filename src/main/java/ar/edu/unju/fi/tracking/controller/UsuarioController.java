@@ -56,7 +56,7 @@ public class UsuarioController {
 	@GetMapping("/eliminarUsuario/{id}")
 	public String eliminarUsuario(Model model, @PathVariable(name="id") Long id) {
 		try {
-			usuarioService.eliminar(id);;
+			usuarioService.eliminar(id);
 		}
 		catch(Exception e){
 			model.addAttribute("listErrorMessage",e.getMessage());
