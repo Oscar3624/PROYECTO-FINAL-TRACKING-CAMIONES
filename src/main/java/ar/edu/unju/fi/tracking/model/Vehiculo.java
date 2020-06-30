@@ -41,11 +41,7 @@ public class Vehiculo implements Serializable{
 	private String numeroChasis;
 	@Column(name = "NUMERO_MOTOR")
 	private String numeroMotor;
-	
-	//RELACION DE MAPEO
-	@OneToOne(mappedBy = "vehiculo" , fetch = FetchType.LAZY)
-	private RegistroTracking registro;
-	
+		
 	public Vehiculo() {
 		// TODO Auto-generated constructor stub
 	}
