@@ -24,62 +24,62 @@ import ar.edu.unju.fi.tracking.model.Localidad;
 @RequestMapping
 public class LocalidadController {
 
-//	@Autowired
-//	ILocalidadService localidadService;
-//	@Autowired
-//	private Localidad localidad;
-//	
-//	@RequestMapping("/localidad")
-//	public String localidad(Model model) {
-//		List<Localidad> localidades = localidadService.obtenerLocalidades();
-//		model.addAttribute("localidades", localidades);
-//		return "localidad";
-//	}
-//	
-//	@GetMapping("/localidad")
-//	public String listaLocalidades(Model model) {
-//		model.addAttribute("localidad", new Localidad());
-//		model.addAttribute("localidades",localidadService.obtenerLocalidades());
-//		model.addAttribute("formTab","active");
-//		return "localidad";
-//		
-//		
-//	}
-//	
-////	@PostMapping("/save")
-////	public String guardar(@Valid @ModelAttribute("localidad") Localidad localidad, BindingResult result,
-////			ModelMap model) {
-////		// agregado Valid (en el modelo tambien) y BindingResult
-////		if (result.hasErrors()) {
-////			// si da error el objeto recibido se vuelve a enviar a la vista
-////			model.addAttribute("localidad", localidad);
-////			model.addAttribute("formTab", "active");
-////		} else {
-////			try {
-////				localidadService.guardar(localidad);
-////				model.addAttribute("localidad", localidad);
-////				model.addAttribute("listTab", "active");
-////				model.addAttribute("localidad", localidadService.obtenerLocalidades());
-////			} catch (Exception e) {
-////				// TODO Auto-generated catch block
-////				// pasar las excepciones al html
-////				model.addAttribute("formLocalidadErrorMessage", e.getMessage());
-////				model.addAttribute("localidad", localidad);
-////				model.addAttribute("localidad", localidadService.obtenerLocalidades());
-////				model.addAttribute("formTab", "active");
-////			}
-////			
-////		}
-////		
-////		return "redirect:/localidad";
-////	}
-//	
-//	@PostMapping("/save")
-//	public String guardar(@Valid Localidad localidad, Model model) {
-//		localidadService.guardar(localidad);
-//		return "redirect:/localidad";
-//		
-//	}
-//	
-//	
+	@Autowired
+	ILocalidadService localidadService;
+	@Autowired
+	private Localidad localidad;
+	
+	@RequestMapping("/localidad")
+	public String localidad(Model model) {
+		List<Localidad> localidades = localidadService.obtenerLocalidades();
+		model.addAttribute("localidades", localidades);
+		return "localidad";
+	}
+	
+	@GetMapping("/localidad")
+	public String listaLocalidades(Model model) {
+		model.addAttribute("localidad", new Localidad());
+		model.addAttribute("localidades",localidadService.obtenerLocalidades());
+		model.addAttribute("formTab","active");
+		return "localidad";
+		
+		
+	}
+	
+	@PostMapping("/formulario")
+	public String guardar(@Valid @ModelAttribute("localidad") Localidad localidad, BindingResult result,
+			ModelMap model) {
+		// agregado Valid (en el modelo tambien) y BindingResult
+		if (result.hasErrors()) {
+			// si da error el objeto recibido se vuelve a enviar a la vista
+			model.addAttribute("localidad", localidad);
+			model.addAttribute("formTab", "active");
+		} else {
+			try {
+				localidadService.guardar(localidad);
+				model.addAttribute("localidad", localidad);
+				model.addAttribute("listTab", "active");
+				model.addAttribute("localidad", localidadService.obtenerLocalidades());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				// pasar las excepciones al html
+				model.addAttribute("formLocalidadErrorMessage", e.getMessage());
+				model.addAttribute("localidad", localidad);
+				model.addAttribute("localidad", localidadService.obtenerLocalidades());
+				model.addAttribute("formTab", "active");
+			}
+			
+		}
+		
+		return "localidad";
+	}
+	
+	/**@PostMapping("/save")
+	public String guardar(@Valid Localidad localidad, Model model) {
+		localidadService.guardar(localidad);
+		return "redirect:/localidad";
+		
+	}*/
+	
+	
 }
