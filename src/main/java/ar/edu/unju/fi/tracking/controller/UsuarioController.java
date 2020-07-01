@@ -143,7 +143,7 @@ public class UsuarioController {
 			}
 			
 		}
-		
+		model.addAttribute("usuarios", usuarioService.obtenerUsuarios());	
 		return "usuario";
 	}
 	
