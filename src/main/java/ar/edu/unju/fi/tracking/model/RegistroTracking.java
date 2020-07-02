@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -48,10 +49,16 @@ public class RegistroTracking implements Serializable{
 	@JoinColumn(name = "VEHICULO_ID")
 	private Vehiculo vehiculo;
 	
-	
-	@Autowired
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "registros_tripulantes", 
+	 joinColumns = @JoinColumn(name = "tripulante_id"), 
+	 inverseJoinColumns = @JoinColumn(name = "registro_id"))
 	private List<Tripulante> tripulante;
+	
+	
+	//@Autowired
+	
+	
 	
 	@Autowired
 	@ManyToOne(fetch = FetchType.LAZY)	

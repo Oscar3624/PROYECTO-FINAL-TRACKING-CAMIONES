@@ -48,7 +48,7 @@ public class AutenticacionSuccessHandler implements AuthenticationSuccessHandler
 				redirectStrategy.sendRedirect(request, response, "/");
 		} else {
 			if (tipoRegistrador) {
-				redirectStrategy.sendRedirect(request, response, "/registroForm");
+				redirectStrategy.sendRedirect(request, response, "/agregarNoticia");
 			} else {
 				throw new IllegalStateException();	
 			}

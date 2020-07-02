@@ -7,12 +7,11 @@ import ar.edu.unju.fi.tracking.model.Tripulante;
 
 public interface ITripulanteService {
 	
-	 public void guardarTripulante(Tripulante tripulante);
-	public List<Tripulante> obteneTripulante();
-	public Tripulante mostrar();
-	public void eliminar(Long id);
-	public Tripulante modificar(Tripulante tripulante) throws Exception;
-	public Tripulante encontrarTripulante(Long id) throws Exception;
+	public void guardarTripulanteEncontrado(Tripulante unTripulante);
+	public void guardarTripulante(Tripulante unTripulante);
+	public Tripulante buscarTripulante(String apellido) throws Exception;
+	public List<Tripulante> buscarTodosTripulante();
+	public void borrarTodosTripulante();
 	 
 	
 	
