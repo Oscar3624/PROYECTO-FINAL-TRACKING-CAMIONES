@@ -51,29 +51,9 @@ public class RegistroController {
 	@Autowired
 	RegistroTracking unRegistroTrackingIntermedio;
 	
-	@GetMapping("/servicio")
-	public String mostrarServicio(Model model) {
-		//LocalDate fecha = LocalDate.parse("2020-06-16");
-		RegistroTracking unaRegistro = new RegistroTracking ();
-		//unaNoticia.setFecha(fecha);
-		//unaRegistro.setVehiculo();
-		//unaRegistro.setTripulante(List<> unTripulante );
-		//unaRegistro.setLocalidad(localidad);
-		Vehiculo unVehiculo = new Vehiculo();
-		unVehiculo.setColor("rojo");
-		//unVehiculo.setApellido("Sosa");
-		//unVehiculo.setNoticia(unaNoticia);
-		//ivehiculoDAO.save(unVehiculo);		
-		//iNoticiaService.guardarNoticia(unaNoticia);	
-		
-		//model.addAttribute("noticiaDeLaVista", unaNoticia);
-		model.addAttribute("todasLasNoticias", iRegistroTrackingService.buscarTodasNoticias());
-		//model.addAttribute("formTab", "active");
-		return "servicio";
-	}
 	
 	
-	@GetMapping("/agregarNoticia")
+	@GetMapping("/agregarNoticia")  // aca creo que crearia los tripulantes y los va almacenando en la lista
 	public String crearNoticia(Model model) {	
 		model.addAttribute("noticiaDelForm",unRegistroTracking);				
 		model.addAttribute("tripulantes",iTripulanteService.buscarTodosTripulante());
@@ -81,7 +61,7 @@ public class RegistroController {
 		return "registroForm";
 	}
 		
-	@PostMapping("/agregarNoticia")
+	@PostMapping("/agregarNoticia") // aca dependiendo de los tripulantes y el registro los guarda y despues limpia la lista al final
 	public String crearNoticiaFinal(@ModelAttribute("noticiaDelForm") RegistroTracking registro, Model model) {
 			registro.setTripulante(iTripulanteService.buscarTodosTripulante());
 			try {				
@@ -94,7 +74,7 @@ public class RegistroController {
 		return "redirect:/agregarNoticia";
 	}
 	
-	@PostMapping("/agregarAutor")
+	@PostMapping("/agregarAutor") // agrega un nuevo tripulante con datos nuevos
 	public String crearAutor(@ModelAttribute("autorDelForm") Tripulante tripulante,  Model model) throws Exception {			
 			try {			
 				iTripulanteService.guardarTripulante(tripulante);
@@ -106,7 +86,7 @@ public class RegistroController {
 	return "redirect:/agregarNoticia";
 }
 	
-	@PostMapping("/buscarAutor")
+	@PostMapping("/buscarAutor") // busca a algun tripulante dependiendo si se encuentra en la bd
 	public String buscarAutor(@ModelAttribute("autorDelForm") Tripulante tripulante,  Model model) throws Exception {	
 		try {
 			Tripulante tripulanteEncontrado = iTripulanteService.buscarTripulante(tripulante.getApellido());
@@ -122,7 +102,7 @@ public class RegistroController {
 	return crearNoticia(model);
 }
 	
-	@PostMapping("/buscarNoticiasAutor")
+	@PostMapping("/buscarNoticiasAutor")  // creo que busca los vehiculos de algun tripulante ya ingresado
 	public String buscarNoticiasAutor(@ModelAttribute("autorDelForm") Tripulante tripulante,  Model model) throws Exception {	
 		try {
 			Tripulante tripulanteEncontrado = iTripulanteService.buscarTripulante(tripulante.getApellido());

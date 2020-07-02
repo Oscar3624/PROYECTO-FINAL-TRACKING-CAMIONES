@@ -32,7 +32,7 @@ public class TripulanteServiceImp implements ITripulanteService{
 	@Override
 	public Tripulante buscarTripulante(String apellido) throws Exception {
 		// TODO Auto-generated method stub
-		return tripulanteDAOImp.findByApellido(apellido).orElseThrow(()-> new Exception("El Autor no Existe"));
+		return tripulanteDAOImp.findByApellido(apellido).orElseThrow(()-> new Exception("El tripulante no Existe"));
 	}
 
 	@Override

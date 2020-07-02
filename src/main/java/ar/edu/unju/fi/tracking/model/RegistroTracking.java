@@ -51,8 +51,8 @@ public class RegistroTracking implements Serializable{
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "registros_tripulantes", 
-	 joinColumns = @JoinColumn(name = "tripulante_id"), 
-	 inverseJoinColumns = @JoinColumn(name = "registro_id"))
+	 joinColumns = @JoinColumn(name = "registro_id"), 
+	 inverseJoinColumns = @JoinColumn(name = "tripulante_id"))
 	private List<Tripulante> tripulante;
 	
 	
