@@ -17,15 +17,17 @@ public class LocalidadServiceImp implements ILocalidadService{
 	
 
 	@Override
-	public void eliminar() {
-		//ilocalidad.eliminar();
-		
+	public void eliminar(Long id) {
+		// TODO Auto-generated method stub
+		localidadDAO.deleteById(id);
 	}
 
 	@Override
-	public Localidad modificar() {
-		//Localidad localidad= ilocalidad.modificar();
-		return null;
+	public Localidad modificar(Localidad localidad) throws Exception {
+		// TODO Auto-generated method stub
+		Localidad localidadGuardar = encontrarLocalidad(localidad.getId());
+		mapearLocalidad(localidad, localidadGuardar);		
+		return localidadDAO.save(localidadGuardar);
 	}
 
 	@Override
@@ -40,10 +42,15 @@ public class LocalidadServiceImp implements ILocalidadService{
 		return localidadDAO.findAll();
 	}
 
-	@Override
-	public Localidad mostrar() {
-		// TODO Auto-generated method stub
-		return null;
+	public void mapearLocalidad(Localidad desde, Localidad hacia) {
+		hacia.setNombre(desde.getNombre());
+		
 	}
-
+	
+	@Override
+	public Localidad encontrarLocalidad(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return localidadDAO.findById(id).orElseThrow(()-> new Exception("La Localidad no Existe"));
+	}
+	
 }
