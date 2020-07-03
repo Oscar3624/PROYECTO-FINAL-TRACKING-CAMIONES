@@ -1,13 +1,16 @@
 package ar.edu.unju.fi.tracking.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -41,6 +44,13 @@ public class Vehiculo implements Serializable{
 	private String numeroChasis;
 	@Column(name = "NUMERO_MOTOR")
 	private String numeroMotor;
+	
+	// RELACION DE MAPEO
+	
+	  @OneToMany(cascade = CascadeType.ALL, 
+			   fetch = FetchType.EAGER)	
+	private List<RegistroTracking> registro;
+	 
 		
 	public Vehiculo() {
 		// TODO Auto-generated constructor stub
@@ -81,6 +91,20 @@ public class Vehiculo implements Serializable{
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	/**
+	 * @return the registro
+	 */
+	public List<RegistroTracking> getRegistro() {
+		return registro;
+	}
+
+	/**
+	 * @param registro the registro to set
+	 */
+	public void setRegistro(List<RegistroTracking> registro) {
+		this.registro = registro;
 	}
 
 	public String getTitular() {

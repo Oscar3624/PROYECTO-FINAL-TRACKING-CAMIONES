@@ -145,8 +145,14 @@
 				<tbody>					
 					<tr>
 									<th scope="col">ID_L</th>
-									<th scope="col">localidad</th>											    								    									
-									
+									<th scope="col">localidad</th>	
+																			    								    									
+									<tr th:each = "localidad:${localidades}">
+								        <td  th:text = "${localidad.id}"></td>
+								        <td  th:text = "${localidad.nombre}"></td>
+					
+								    </tr>
+								    <tr>
 									<th scope="col">ID_V</th>
 									<th scope="col">patente</th>
 									<th scope="col">color</th>
@@ -156,9 +162,9 @@
 									<th scope="col">tipo</th>
 									<th scope="col">numero de chasis</th>
 									<th scope="col">numero de motor</th>	
-									<tr th:each = "registro:${registros}">
-								        <td  th:text = "${localidad.id}"></td>
-								        <td  th:text = "${localidad.nombre}"></td>								     							      
+	
+								    		
+								    <tr th:each = "vehiculo:${vehiculos}">					     							      
 								        <td  th:text = "${vehiculo.id}"></td>
 								        <td  th:text = "${vehiculo.patente}"></td>
 								        <td  th:text = "${vehiculo.color}"></td>

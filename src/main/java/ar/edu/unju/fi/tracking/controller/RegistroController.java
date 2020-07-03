@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ar.edu.unju.fi.repository.IUsuarioDAO;
 import ar.edu.unju.fi.repository.IVehiculoDAO;
+import ar.edu.unju.fi.service.ILocalidadService;
 import ar.edu.unju.fi.service.IRegistroTrackingService;
 //import ar.edu.unju.fi.repository.ITripulanteDAO;
 //import ar.edu.unju.fi.service.IRegistroTrackingService;
 import ar.edu.unju.fi.service.ITripulanteService;
+import ar.edu.unju.fi.service.IVehiculoService;
 import ar.edu.unju.fi.tracking.model.Localidad;
 //import ar.edu.unju.fi.service.RegistroTrackingImp;
 import ar.edu.unju.fi.tracking.model.RegistroTracking;
@@ -50,11 +52,26 @@ public class RegistroController {
 	IVehiculoDAO ivehiculoDAO;
 	@Autowired
 	RegistroTracking unRegistroTrackingIntermedio;
+	@Autowired
+	Localidad unaLocalidad;
+	@Autowired
+	ILocalidadService localidadService;
+	@Autowired
+	Vehiculo unVehiculo;
+	@Autowired
+	IVehiculoService vehiculoService;
 	
 	
 	
 	@GetMapping("/agregarNoticia")  // aca creo que crearia los tripulantes y los va almacenando en la lista
 	public String crearNoticia(Model model) {	
+		
+		model.addAttribute("noticiaLDelForm",unRegistroTracking);				
+		model.addAttribute("localidades",localidadService.obtenerLocalidades());
+		model.addAttribute("autorDelForm", unaLocalidad);
+		model.addAttribute("noticiaDelForm",unRegistroTracking);				
+		model.addAttribute("vehiculos",vehiculoService.obtenerVehiculo());
+		model.addAttribute("autorDelForm", unVehiculo);
 		model.addAttribute("noticiaDelForm",unRegistroTracking);				
 		model.addAttribute("tripulantes",iTripulanteService.buscarTodosTripulante());
 		model.addAttribute("autorDelForm", unTripulante);
@@ -62,10 +79,15 @@ public class RegistroController {
 	}
 		
 	@PostMapping("/agregarNoticia") // aca dependiendo de los tripulantes y el registro los guarda y despues limpia la lista al final
-	public String crearNoticiaFinal(@ModelAttribute("noticiaDelForm") RegistroTracking registro, Model model) {
+	public String crearNoticiaFinal(@ModelAttribute("noticiaDelForm") RegistroTracking registro, Localidad localidad, Vehiculo vehiculo, Model model) {
+		
 			registro.setTripulante(iTripulanteService.buscarTodosTripulante());
 			try {				
-				iRegistroTrackingService.guardarRegistro(registro);	
+				
+				localidadService.guardar(localidad);
+				vehiculoService.guardarVehiculo(vehiculo);
+				iRegistroTrackingService.guardarNoticia(registro);
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block			
 				model.addAttribute("formAutorErrorMessage", e.getMessage());				

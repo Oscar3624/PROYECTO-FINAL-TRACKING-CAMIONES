@@ -81,13 +81,13 @@ public class RegistroTracking implements Serializable{
 		this.detalleLugarRegistro = detalleLugarRegistro;
 	}*/
 
-	public RegistroTracking(long id, LocalDateTime fechaHora, Vehiculo vehiculo, List<Tripulante> tripulante,
+	public RegistroTracking(long id, LocalDateTime fechaHora, Vehiculo vehiculo,
 			Localidad localidad, String detalleLugarRegistro) {
 		super();
 		this.id = id;
 		this.fechaHora = fechaHora;
 		this.vehiculo = vehiculo;
-		this.tripulante = tripulante;
+		//this.tripulante = tripulante;
 		this.localidad = localidad;
 		this.detalleLugarRegistro = detalleLugarRegistro;
 	}	
@@ -150,11 +150,11 @@ public class RegistroTracking implements Serializable{
 		this.detalleLugarRegistro = detalleLugarRegistro;
 	}
 
-	/**@Override
+	@Override
 	public String toString() {
-		return "RegistroTracking [fechaHora=" + fechaHora + ", vehiculo=" + vehiculo + ", tripulantes=" + tripulantes
+		return "RegistroTracking [fechaHora=" + fechaHora + ", vehiculo=" + vehiculo 
 				+ ", localidad=" + localidad + ", detalleLugarRegistro=" + detalleLugarRegistro + "]";
-	}*/
+	}
 	
 	
 	
