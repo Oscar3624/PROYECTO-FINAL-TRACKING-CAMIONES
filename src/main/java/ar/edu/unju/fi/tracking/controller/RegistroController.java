@@ -66,7 +66,7 @@ public class RegistroController {
 	@GetMapping("/agregarNoticia")  // aca creo que crearia los tripulantes y los va almacenando en la lista
 	public String crearNoticia(Model model) {	
 		
-		model.addAttribute("noticiaLDelForm",unRegistroTracking);				
+		model.addAttribute("noticiaDelForm",unRegistroTracking);				
 		model.addAttribute("localidades",localidadService.obtenerLocalidades());
 		model.addAttribute("autorDelForm", unaLocalidad);
 		model.addAttribute("noticiaDelForm",unRegistroTracking);				
