@@ -92,15 +92,15 @@ public class LocalidadController {
 		//----------
 		
 		@PostMapping("/editarLocalidad")
-		public String postEditarLocalidad(@Valid @ModelAttribute("localidadDelForm") Localidad localidadd, BindingResult result, ModelMap model) {
+		public String postEditarLocalidad(@Valid @ModelAttribute("localidadDelForm") Localidad editlocalidad, BindingResult result, ModelMap model) {
 			if(result.hasErrors()) {
 				//si da error el objeto recibido se vuelve a enviar a la vista
-				model.addAttribute("localidadDelForm", localidadd);			
+				model.addAttribute("localidadDelForm", editlocalidad);			
 				model.addAttribute("formTab", "active");
 				model.addAttribute("editMode", "true");
 			} else {
 				try {
-					localidadService.modificar(localidad);
+					localidadService.modificar(editlocalidad);
 					model.addAttribute("localidadDelForm", localidad);
 					model.addAttribute("listTab", "active");
 					model.addAttribute("editMode", "false");
@@ -108,7 +108,7 @@ public class LocalidadController {
 					// TODO Auto-generated catch block
 					// pasar las excepciones al html
 					model.addAttribute("formLocalidadErrorMessage",e.getMessage());
-					model.addAttribute("localidadDelForm", localidadd);			
+					model.addAttribute("localidadDelForm",editlocalidad);			
 					model.addAttribute("formTab", "active");	
 					model.addAttribute("localidades", localidadService.obtenerLocalidades());				
 					model.addAttribute("editMode", "true");

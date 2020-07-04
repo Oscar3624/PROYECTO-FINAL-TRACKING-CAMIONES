@@ -87,15 +87,15 @@ public class UsuarioController {
 	//----------
 	
 	@PostMapping("/editarUsuario")
-	public String postEditarUsuario(@Valid @ModelAttribute("usuarioDelForm") Usuario usuarioo, BindingResult result, ModelMap model) {
+	public String postEditarUsuario(@Valid @ModelAttribute("usuarioDelForm") Usuario editusuario, BindingResult result, ModelMap model) {
 		if(result.hasErrors()) {
 			//si da error el objeto recibido se vuelve a enviar a la vista
-			model.addAttribute("usuarioDelForm", usuarioo);			
+			model.addAttribute("usuarioDelForm", editusuario);			
 			model.addAttribute("formTab", "active");
 			model.addAttribute("editMode", "true");
 		} else {
 			try {
-				usuarioService.modificar(usuario);
+				usuarioService.modificar(editusuario);
 				model.addAttribute("usuarioDelForm", usuario);
 				model.addAttribute("listTab", "active");
 				model.addAttribute("editMode", "false");
@@ -103,7 +103,7 @@ public class UsuarioController {
 				// TODO Auto-generated catch block
 				// pasar las excepciones al html
 				model.addAttribute("formUsuarioErrorMessage",e.getMessage());
-				model.addAttribute("usuarioDelForm", usuarioo);			
+				model.addAttribute("usuarioDelForm", editusuario);			
 				model.addAttribute("formTab", "active");	
 				model.addAttribute("usuarios", usuarioService.obtenerUsuarios());				
 				model.addAttribute("editMode", "true");

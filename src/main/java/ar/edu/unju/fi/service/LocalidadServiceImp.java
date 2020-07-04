@@ -25,8 +25,11 @@ public class LocalidadServiceImp implements ILocalidadService{
 	@Override
 	public Localidad modificar(Localidad localidad) throws Exception {
 		// TODO Auto-generated method stub
+		
 		Localidad localidadGuardar = encontrarLocalidad(localidad.getId());
+		
 		mapearLocalidad(localidad, localidadGuardar);		
+		
 		return localidadDAO.save(localidadGuardar);
 	}
 

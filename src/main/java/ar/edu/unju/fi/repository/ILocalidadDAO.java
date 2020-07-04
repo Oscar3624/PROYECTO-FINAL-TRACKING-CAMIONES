@@ -8,6 +8,6 @@ import ar.edu.unju.fi.tracking.model.Localidad;
 
 public interface ILocalidadDAO extends JpaRepository<Localidad, Long>{
 	
-	public Optional<Localidad> findByNombre(String nombre);
+	
 	
 }
