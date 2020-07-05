@@ -3,19 +3,30 @@ package ar.edu.unju.fi.tracking.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 //import java.util.List;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+
+
+
+
+
 
 @Component
 @Entity
@@ -32,21 +43,28 @@ public class RegistroTracking implements Serializable{
 	private long id;
 	@Column(name = "FECHA_HORA")
 	private LocalDateTime fechaHora;
+	
 	@Autowired
-	@OneToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(fetch = FetchType.LAZY)	
 	@JoinColumn(name = "VEHICULO_ID")
 	private Vehiculo vehiculo;
-	//private List<Tripulante> tripulantes;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "registros_tripulantes", 
+	 joinColumns = @JoinColumn(name = "registro_id"), 
+	 inverseJoinColumns = @JoinColumn(name = "tripulante_id"))
+	private List<Tripulante> tripulante;
+	
+	
+	//@Autowired
+	
+	
 	
 	@Autowired
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "TRIPULANTE_ID")
-	private Tripulante tripulante;
-	
-	@Autowired
-	@OneToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(fetch = FetchType.LAZY)	
 	@JoinColumn(name = "LOCALIDAD_ID")
 	private Localidad localidad;
+	
 	private String detalleLugarRegistro;
 	
 	public RegistroTracking() {
@@ -63,13 +81,13 @@ public class RegistroTracking implements Serializable{
 		this.detalleLugarRegistro = detalleLugarRegistro;
 	}*/
 
-	public RegistroTracking(long id, LocalDateTime fechaHora, Vehiculo vehiculo, Tripulante tripulante,
+	public RegistroTracking(long id, LocalDateTime fechaHora, Vehiculo vehiculo,
 			Localidad localidad, String detalleLugarRegistro) {
 		super();
 		this.id = id;
 		this.fechaHora = fechaHora;
 		this.vehiculo = vehiculo;
-		this.tripulante = tripulante;
+		//this.tripulante = tripulante;
 		this.localidad = localidad;
 		this.detalleLugarRegistro = detalleLugarRegistro;
 	}	
@@ -100,11 +118,11 @@ public class RegistroTracking implements Serializable{
 	}
 
 	
-	public Tripulante getTripulante() {
+	public List<Tripulante> getTripulante() {
 		return tripulante;
 	}
 
-	public void setTripulante(Tripulante tripulante) {
+	public void setTripulante(List<Tripulante> tripulante) {
 		this.tripulante = tripulante;
 	}
 
@@ -132,11 +150,11 @@ public class RegistroTracking implements Serializable{
 		this.detalleLugarRegistro = detalleLugarRegistro;
 	}
 
-	/**@Override
+	@Override
 	public String toString() {
-		return "RegistroTracking [fechaHora=" + fechaHora + ", vehiculo=" + vehiculo + ", tripulantes=" + tripulantes
+		return "RegistroTracking [fechaHora=" + fechaHora + ", vehiculo=" + vehiculo 
 				+ ", localidad=" + localidad + ", detalleLugarRegistro=" + detalleLugarRegistro + "]";
-	}*/
+	}
 	
 	
 	

@@ -25,22 +25,24 @@ public class UsuarioServiceImp implements IUsuarioService{
 	}
 
  	@Override
- 
+ 	 
 	public Usuario mostrar() {
 		//Usuario usuario= usuarioDAO.mostrar();
 		return null;
 	}
 
 	@Override
-	public void eliminar() {
-		//usuarioDAO.eliminar();
-		
+	public void eliminar(Long id) {
+		// TODO Auto-generated method stub
+		usuarioDAO.deleteById(id);
 	}
 
 	@Override
-	public Usuario modificar() {
-		//Usuario usuario= usuarioDAO.modificar();
-		return null;
+	public Usuario modificar(Usuario usuario) throws Exception {
+		// TODO Auto-generated method stub
+		Usuario usuarioGuardar = encontrarUsuario(usuario.getId());
+		mapearUsuario(usuario, usuarioGuardar);		
+		return usuarioDAO.save(usuarioGuardar);
 	}
 
 	@Override
@@ -49,5 +51,19 @@ public class UsuarioServiceImp implements IUsuarioService{
 		
 		return usuarioDAO.findAll();
 	}
+	
+	public void mapearUsuario(Usuario desde, Usuario hacia) {
+		hacia.setNombreUsuario(desde.getNombreUsuario());
+		hacia.setNombreReal(desde.getNombreReal());
+		hacia.setApellidoReal(desde.getApellidoReal());
+	}
+	
+	@Override
+	public Usuario encontrarUsuario(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return usuarioDAO.findById(id).orElseThrow(()-> new Exception("El Usuario no Existe"));
+	}
 
 }
+
+

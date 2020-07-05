@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tracking.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,10 +9,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
+
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+
 
 @Component
 @Entity
@@ -36,9 +40,10 @@ public class Tripulante implements Serializable {
 	@Column(name = "NACIONALIDAD")
 	private String nacionalidad;
 
-	// RELACION DE MAPEO
-	@OneToOne(mappedBy = "tripulante", fetch = FetchType.LAZY)
-	private RegistroTracking registro;
+	// RELACION DE MAPEO	
+	
+	@ManyToMany(mappedBy = "tripulante", fetch = FetchType.LAZY)
+	private List<RegistroTracking> registro;
 
 	public Tripulante() {
 		// TODO Auto-generated constructor stub

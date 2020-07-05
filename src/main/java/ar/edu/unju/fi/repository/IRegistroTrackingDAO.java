@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import ar.edu.unju.fi.tracking.model.RegistroTracking;
 
-//import ar.edu.unju.fi.tracking.model.RegistroTracking;
+
 
 public interface IRegistroTrackingDAO extends JpaRepository<RegistroTracking, Long>{
 	/**public void guardar();

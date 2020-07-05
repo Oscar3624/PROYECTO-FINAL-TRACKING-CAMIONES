@@ -1,17 +1,22 @@
 package ar.edu.unju.fi.tracking.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+
 
 @Component
 @Entity
@@ -32,8 +37,9 @@ public class Localidad implements Serializable {
 	private String nombre;
 
 	// RELACION DE MAPEO
-	@OneToOne(mappedBy = "localidad", fetch = FetchType.LAZY)
-	private RegistroTracking registro;
+	@OneToMany(cascade = CascadeType.ALL, 
+			   fetch = FetchType.EAGER)	
+	private List<RegistroTracking> registro;
 
 	public Localidad() {
 		// TODO Auto-generated constructor stub
@@ -42,6 +48,20 @@ public class Localidad implements Serializable {
 	public Localidad(String nombre) {
 		super();
 		this.nombre = nombre;
+	}
+	
+	
+
+	/**
+	 * @param id
+	 * @param nombre
+	 * @param registro
+	 */
+	public Localidad(long id, String nombre, List<RegistroTracking> registro) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.registro = registro;
 	}
 
 	public long getId() {
@@ -58,6 +78,21 @@ public class Localidad implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+
+	/**
+	 * @return the registro
+	 */
+	public List<RegistroTracking> getRegistro() {
+		return registro;
+	}
+
+	/**
+	 * @param registro the registro to set
+	 */
+	public void setRegistro(List<RegistroTracking> registro) {
+		this.registro = registro;
 	}
 
 	@Override
