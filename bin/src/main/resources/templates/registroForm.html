@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Usuario</title>
+<link rel="stylesheet" type="text/css" href="css/estilos.css">
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div th:insert="layout/header :: header"></div>
+	<div class="container-fluid">
+		<section>
+			<!-- *{...}: Expresiones de selección se ejecutará solo en un objeto previamente seleccionado -->
+			<form th:action="@{/save}" th:object=${registroForm} method="POST"
+				class="row">
+
+				<div class="col-md-6">
+					<!-- inicio Tripulante -->
+					<div class="card ">
+						<div class="card-header">
+							<h3>Registro Tripulante</h3>
+						</div>
+						<div class="card-body">
+							<input type="hidden" th:field="*{id}" /> <input type="hidden"
+								th:field="*{tripulante.id}" />
+							<!-- <div class="form-group">
+							<label>Documento</label> <input th:field="*{tripulante.documeto}"
+								type="text" class="form-control" />
+						</div> -->
+							<div class="form-group">
+								<label>Apellido</label> <input th:field="*{tripulante.apellido}"
+									type="text" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>Nombres</label> <input th:field="*{tripulante.nombres}"
+									type="text" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>Nacionalidad</label> <input
+									th:field="*{tripulante.nacionalidad}" type="text"
+									class="form-control" />
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- fin tripulante -->
+
+				<!-- inicio localidad -->
+
+				<div class="col-md-6">
+					<div class="card">
+
+						<div class="card-header">
+							<h3>Localidad</h3>
+						</div>
+						<div class="card-body">
+							<input type="hidden" th:field="*{id}" /> <input type="hidden"
+								th:field="*{localidad.id}" />
+							<div class="form-group">
+								<label>Localidad</label> <input th:field="*{localidad.nombre}"
+									type="text" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fin localidad  -->
+
+
+				<!-- inicio vehiculo -->
+				<div class="col-md-6">
+					<div class="card">
+						<div class="card-header">
+							<h3>Vehiculo</h3>
+						</div>
+						<div class="card-body">
+							<input type="hidden" th:field="*{id}" /> <input type="hidden"
+								th:field="*{vehiculo.id}" />
+							<div class="form-group">
+								<label>Patente</label> <input th:field="*{vehiculo.patente}"
+									type="text" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>Color</label> <input th:field="*{vehiculo.color}"
+									type="text" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>Titular</label> <input th:field="*{vehiculo.titular}"
+									type="text" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>Marca</label> <input th:field="*{vehiculo.marca}"
+									type="text" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>Modelo</label> <input th:field="*{vehiculo.modelo}"
+									type="text" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>Tipo</label> <input th:field="*{vehiculo.tipo}"
+									type="text" class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>Numero de Chasis</label> <input
+									th:field="*{vehiculo.numeroChasis}" type="text"
+									class="form-control" />
+							</div>
+							<div class="form-group">
+								<label>Numero Motor</label> <input
+									th:field="*{vehiculo.numeroMotor}" type="text"
+									class="form-control" />
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!-- fin vehiculo -->
+
+				<!-- boton guardar registro -->
+				<div class="col">
+					<input type="submit" value="Guardar"
+						class="btn btn-success text-center ml-5 mt-5">
+				</div>
+
+			</form>
+	</div>
+
+	</section>
+
+	<div th:insert="layout/footer :: footer"></div>
+
+</body>
+</html>
