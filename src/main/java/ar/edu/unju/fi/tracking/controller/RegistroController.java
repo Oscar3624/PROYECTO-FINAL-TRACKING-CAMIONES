@@ -66,15 +66,16 @@ public class RegistroController {
 	@GetMapping("/agregarNoticia")  // aca creo que crearia los tripulantes y los va almacenando en la lista
 	public String crearNoticia(Model model) {	
 		
-		model.addAttribute("noticiaDelForm",unRegistroTracking);				
+						
 		model.addAttribute("localidades",localidadService.obtenerLocalidades());
-		model.addAttribute("autorDelForm", unaLocalidad);
-		model.addAttribute("noticiaDelForm",unRegistroTracking);				
 		model.addAttribute("vehiculos",vehiculoService.obtenerVehiculo());
 		model.addAttribute("autorDelForm", unVehiculo);
 		model.addAttribute("noticiaDelForm",unRegistroTracking);				
 		model.addAttribute("tripulantes",iTripulanteService.buscarTodosTripulante());
 		model.addAttribute("autorDelForm", unTripulante);
+		model.addAttribute("autorDelForm", unaLocalidad);
+		model.addAttribute("noticiaDelForm",unRegistroTracking);
+		model.addAttribute("noticiaDelForm",unRegistroTracking);
 		return "registroForm";
 	}
 		
@@ -84,7 +85,7 @@ public class RegistroController {
 			registro.setTripulante(iTripulanteService.buscarTodosTripulante());
 			try {				
 				
-				localidadService.guardar(localidad);
+				//localidadService.guardar(localidad);
 				vehiculoService.guardarVehiculo(vehiculo);
 				iRegistroTrackingService.guardarNoticia(registro);
 				

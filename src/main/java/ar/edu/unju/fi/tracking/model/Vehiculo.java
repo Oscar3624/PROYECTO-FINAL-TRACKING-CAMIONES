@@ -47,9 +47,9 @@ public class Vehiculo implements Serializable{
 	
 	// RELACION DE MAPEO
 	
-	  @OneToMany(cascade = CascadeType.ALL, 
-			   fetch = FetchType.EAGER)	
-	private List<RegistroTracking> registro;
+	//@OneToMany(cascade = CascadeType.ALL, 
+		//	   fetch = FetchType.EAGER)	
+	//private List<RegistroTracking> registro;
 	 
 		
 	public Vehiculo() {
@@ -93,19 +93,15 @@ public class Vehiculo implements Serializable{
 		this.color = color;
 	}
 
-	/**
-	 * @return the registro
-	 */
-	public List<RegistroTracking> getRegistro() {
+	
+	/**public List<RegistroTracking> getRegistro() {
 		return registro;
 	}
 
-	/**
-	 * @param registro the registro to set
-	 */
+	
 	public void setRegistro(List<RegistroTracking> registro) {
 		this.registro = registro;
-	}
+	}**/
 
 	public String getTitular() {
 		return titular;

@@ -42,8 +42,8 @@ public class Tripulante implements Serializable {
 
 	// RELACION DE MAPEO	
 	
-	@ManyToMany(mappedBy = "tripulante", fetch = FetchType.LAZY)
-	private List<RegistroTracking> registro;
+	//@ManyToMany(mappedBy = "tripulante", fetch = FetchType.LAZY)
+	//private List<RegistroTracking> registro;
 
 	public Tripulante() {
 		// TODO Auto-generated constructor stub

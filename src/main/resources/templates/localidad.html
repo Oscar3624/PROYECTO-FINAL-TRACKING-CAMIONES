@@ -21,15 +21,17 @@
 
 <meta charset="UTF-8">
 <title>Localidad</title>
+<link rel="stylesheet" type="text/css" href="css/estilos.css">
 <link rel="stylesheet" type="text/css"
 	href="webjars/bootstrap/4.5.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
 </head>
 
 <body>
 
 	<div th:insert="layout/header :: header"></div>
-	<div class="container">
+	
+	<div class="container-fluid">
 
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="nav-item"><a id="formulario-tab" role="tab"
@@ -49,15 +51,23 @@
 				<div class="card">
 					<div class="card-header">Alta Localidad</div>
 					<div class="card-body">
-						<form class="form" autocomplete="off" th:object=${localidadDelForm} th:action="${editMode}?@{/editarLocalidad}:@{/formulario}" method="POST">
+						<form class="form" autocomplete="off"
+							th:object=${localidadDelForm}
+							th:action="${editMode}?@{/editarLocalidad}:@{/formulario}"
+							method="POST">
 							<div class="row">
 								<div class="col">
 									<div class="form-group row">
 										<label class="col-sm-2 col-form-label">Nombre:</label>
 										<div class="col-sm-10">
-											<input class="form-control" type=hidden th:field="${localidadDelForm.id}" th:if="${editMode}">
-											<input type="text" id="idnombreLocalidad" th:field="${localidadDelForm.nombre}" placeholder="Ingrese Localidad">
-									        <div class="alert-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error en el nombre de localidad</div>
+											<input class="form-control" type=hidden
+												th:field="${localidadDelForm.id}" th:if="${editMode}">
+											<input type="text" id="idnombreLocalidad"
+												th:field="${localidadDelForm.nombre}"
+												placeholder="Ingrese Localidad">
+											<div class="alert-danger"
+												th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error
+												en el nombre de localidad</div>
 										</div>
 									</div>
 
@@ -68,18 +78,25 @@
 								<div class="col-lg-12 text-center">
 									<a class="btn btn-secondary" th:href="@{'/LocalidadCancelar'}">Cancelar</a>
 									<button type="button" class="btn btn-primary"
-										data-toggle="modal" data-target="#modalAgregar">Guardar	Localidad</button>
+										data-toggle="modal" data-target="#modalAgregar">Guardar
+										Localidad</button>
 								</div>
 							</div>
-							<div class="alert-danger text-center" th:if="${formLocalidadErrorMessage}" th:text="${formLocalidadErrorMessage}">Name Error</div> 
+							<div class="alert-danger text-center"
+								th:if="${formLocalidadErrorMessage}"
+								th:text="${formLocalidadErrorMessage}">Name Error</div>
 
 							<!-- Modal Agregar -->
-							<div class="modal fade" id="modalAgregar" tabindex="-1"	role="dialog" aria-labelledby="agregarModalTitulo" aria-hidden="true">
+							<div class="modal fade" id="modalAgregar" tabindex="-1"
+								role="dialog" aria-labelledby="agregarModalTitulo"
+								aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h5 class="modal-title" id="agregarModalTitulo">Confirmar Agregar</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<h5 class="modal-title" id="agregarModalTitulo">Confirmar
+												Agregar</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
 										</div>
@@ -89,7 +106,9 @@
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary"
 												data-dismiss="modal">Close</button>
-											<input type="submit" class="btn btn-primary" value="Save Changes" th:value="${editMode}?'Modificar Localidad':'Crear Localidad'">
+											<input type="submit" class="btn btn-primary"
+												value="Save Changes"
+												th:value="${editMode}?'Modificar Localidad':'Crear Localidad'">
 										</div>
 									</div>
 								</div>
@@ -101,12 +120,13 @@
 		</div>
 
 
-				<div class="tab-pane fade " id="lista" role="tabpanel" th:classappend="${listTab}"	aria-labelledby="lista-tab">
-				 <div class="card">
-						<div class="card-header">
-							<h4>Listado de Localidades</h4>
-						</div>		
-				 <div class="card-body">
+		<div class="tab-pane fade " id="lista" role="tabpanel"
+			th:classappend="${listTab}" aria-labelledby="lista-tab">
+			<div class="card">
+				<div class="card-header">
+					<h4>Listado de Localidades</h4>
+				</div>
+				<div class="card-body">
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -118,10 +138,11 @@
 							<tr th:each="localidad:${localidades}">
 								<td th:text="${localidad.id}"></td>
 								<td th:text="${localidad.nombre}"></td>
-								<td><a href="#" th:href="@{'/editarLocalidad/'+${localidad.id}}">
-									<i class="fa fa-edit"></i></a> | 
-									<a href="#" th:onclick="'javascript:confirmarEliminar(\''+${localidad.id}+'\');'"><i class="fa fa-trash-alt"></i>
-									</a></td>			
+								<td><a href="#"
+									th:href="@{'/editarLocalidad/'+${localidad.id}}"> <i
+										class="fa fa-edit"></i></a> | <a href="#"
+									th:onclick="'javascript:confirmarEliminar(\''+${localidad.id}+'\');'"><i
+										class="fa fa-trash-alt"></i> </a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -129,46 +150,52 @@
 
 			</div>
 		</div>
-	
-<script type="text/javascript">
-function confirmarEliminar(id){
-	$('#modalEliminar').modal('show');
-	$("#identificadorLocalidadHiddenInput").val(id);
-}
 
-function eliminarLocalidad(){
-	var id = $("#identificadorLocalidadHiddenInput").val();
-    window.location = "eliminarLocalidad/"+id;
-}
-</script>
-						
-						
-						<!-- Modal Eliminar -->
-							<div class="modal fade" id="modalEliminar" tabindex="-1"	role="dialog" aria-labelledby="eliminarModalTitulo"	aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="eliminarModalTitulo">Confirmar Eliminar</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body"><h6>¿Esta seguro que desea eliminar esta Localidad?</h6></div>
-										<input type="hidden" id="identificadorLocalidadHiddenInput" name="localidadIdHiddenInput"/>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary"	data-dismiss="modal">Cerrar</button>
-											<button type="button" class="btn btn-primary" th:onclick="eliminarLocalidad()">Borrar Localidad</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						 </div>
-						
-				
+		<script type="text/javascript">
+			function confirmarEliminar(id) {
+				$('#modalEliminar').modal('show');
+				$("#identificadorLocalidadHiddenInput").val(id);
+			}
 
-			<div th:insert="layout/footer :: footer"></div>
+			function eliminarLocalidad() {
+				var id = $("#identificadorLocalidadHiddenInput").val();
+				window.location = "eliminarLocalidad/" + id;
+			}
+		</script>
 
 
-			
+		<!-- Modal Eliminar -->
+		<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog"
+			aria-labelledby="eliminarModalTitulo" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="eliminarModalTitulo">Confirmar
+							Eliminar</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<h6>¿Esta seguro que desea eliminar esta Localidad?</h6>
+					</div>
+					<input type="hidden" id="identificadorLocalidadHiddenInput"
+						name="localidadIdHiddenInput" />
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Cerrar</button>
+						<button type="button" class="btn btn-primary"
+							th:onclick="eliminarLocalidad()">Borrar Localidad</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:insert="layout/footer :: footer"></div>
+
+
+
 </body>
-</html> 
+</html>

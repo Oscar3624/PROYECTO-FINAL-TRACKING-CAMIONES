@@ -12,296 +12,300 @@
 	src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <style>
-    .required .control-label:after { 
-    color: #d00;
-    content: "*";    
+.required .control-label:after {
+	color: #d00;
+	content: "*";
 }
 </style>
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Registro Tracking</title>
+<link rel="stylesheet" type="text/css" href="css/estilos.css">
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+
 </head>
 <body>
-	<div class="container">
-	
+
+	<div th:insert="layout/header :: header"></div>
+	<div class="container-fluid">
+
 		<button type="button" class="btn btn-success" data-toggle="modal"
-				data-target="#modalBuscarAutor">Buscar tripulante</button>					
+			data-target="#modalBuscarAutor">Buscar tripulante</button>
 		<button type="button" class="btn btn-success" data-toggle="modal"
-				data-target="#modalAgregarAutor">Agregar tripulante</button>
+			data-target="#modalAgregarAutor">Agregar tripulante</button>
 		<button type="button" class="btn btn-success" data-toggle="modal"
-				data-target="#modalBuscarNoticiasAutor">Agregar Tripulante</button>
+			data-target="#modalBuscarNoticiasAutor">Agregar Tripulante</button>
 
 		<form id="formNoticia" th:object="${noticiaDelForm}"
-			th:action="@{/agregarNoticia}" method="post">
-			<div class="col-md-6">
-					<div class="card">
+			th:action="@{/agregarNoticia}" method="post" class="row">
 
-						<div class="card-header">
-							<h3>Localidad</h3>
+			<!-- inicio vehiculo -->
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<h3>Vehiculo</h3>
+					</div>
+					<div class="card-body">
+						<input type="hidden" th:field="*{id}" /> <input type="hidden"
+							th:field="*{vehiculo.id}" />
+
+
+						<div class="form-group row">
+							<label>Patente</label> <input th:field="*{vehiculo.patente}"
+								type="text" class="form-control" />
 						</div>
-						<div class="card-body">
-							<input type="hidden" th:field="*{id}" /> <input type="hidden"
-								th:field="*{localidad.id}" />
-							<div class="form-group">
-								<label>Localidad</label> <input th:field="*{localidad.nombre}"
-									type="text" class="form-control" />
-							</div>
+						<div class="form-group">
+							<label>Color</label> <input th:field="*{vehiculo.color}"
+								type="text" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Titular</label> <input th:field="*{vehiculo.titular}"
+								type="text" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Marca</label> <input th:field="*{vehiculo.marca}"
+								type="text" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Modelo</label> <input th:field="*{vehiculo.modelo}"
+								type="text" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Tipo</label> <input th:field="*{vehiculo.tipo}"
+								type="text" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Numero de Chasis</label> <input
+								th:field="*{vehiculo.numeroChasis}" type="text"
+								class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Numero Motor</label> <input
+								th:field="*{vehiculo.numeroMotor}" type="text"
+								class="form-control" />
+
 						</div>
 					</div>
 				</div>
-				<!-- fin localidad  -->
+
+			</div>
+
+			<!-- fin vehiculo -->
+
+			<!-- inicio localidad -->
+			<div class="form-group row">
+
+				<label class="col-md-4" for="localidad">Localidad</label> <select
+					th:field="*{localidad}"
+					class="from-control form-control-sm col-md-8" id="localidad">
+					<option th:each="localidad:${localidades}"
+						th:value="${localidad.id}" th:text="${localidad.nombre}" />
+				</select>
 
 
-				<!-- inicio vehiculo -->
-				<div class="col-md-6">
-					<div class="card">
-						<div class="card-header">
-							<h3>Vehiculo</h3>
-						</div>
-						<div class="card-body">
-							<input type="hidden" th:field="*{id}" /> <input type="hidden"
-								th:field="*{vehiculo.id}" />
-								
-								
-							<div class="form-group">
-								<label>Patente</label> <input th:field="*{vehiculo.patente}"
-									type="text" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Color</label> <input th:field="*{vehiculo.color}"
-									type="text" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Titular</label> <input th:field="*{vehiculo.titular}"
-									type="text" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Marca</label> <input th:field="*{vehiculo.marca}"
-									type="text" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Modelo</label> <input th:field="*{vehiculo.modelo}"
-									type="text" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Tipo</label> <input th:field="*{vehiculo.tipo}"
-									type="text" class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Numero de Chasis</label> <input
-									th:field="*{vehiculo.numeroChasis}" type="text"
-									class="form-control" />
-							</div>
-							<div class="form-group">
-								<label>Numero Motor</label> <input
-									th:field="*{vehiculo.numeroMotor}" type="text"
-									class="form-control" />
-									
-							</div>
-						</div>
-					</div>
-
-				</div>
-			
-			<button type="submit" class="btn btn-primary">Agregar Registro</button>
+			</div>
+			<!-- fin localidad  -->
+			<div class="form-group row">
+				<button type="submit" class="btn btn-primary">Agregar
+					Registro</button>
+			</div>
 		</form>
-<!-- se deberia agregar otro boton Cancelar para que si no quiero guardar noticia, NO se guarde el Autor en el Listado -->
+		<!-- se deberia agregar otro boton Cancelar para que si no quiero guardar noticia, NO se guarde el Autor en el Listado -->
 		<div class="card">
-		<div class="card-body">
-		<div class="table-responsive">
-			<table class="table table-striped">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">id</th>
-						<th scope="col">documento</th>
-						<th scope="col">Apellido</th>						
-						<th scope="col">Nombre</th>	
-						<th scope="col">Nacionalidad</th>					
-					</tr>
-				</thead>
-				<tbody>					
-					<tr th:each="tripulante : ${tripulantes}">
-						<td th:text="${tripulante.id}"></td>
-						<td th:text="${tripulante.documento}"></td>
-						<td th:text="${tripulante.apellido}"></td>
-						<td th:text="${tripulante.nombres}"></td>
-						<td th:text="${tripulante.nacionalidad}"></td>
-												
-					</tr>
-					
-				</tbody>
-			</table>
-			</div></div>
-		</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">id</th>
+								<th scope="col">documento</th>
+								<th scope="col">Apellido</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Nacionalidad</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="tripulante : ${tripulantes}">
+								<td th:text="${tripulante.id}"></td>
+								<td th:text="${tripulante.documento}"></td>
+								<td th:text="${tripulante.apellido}"></td>
+								<td th:text="${tripulante.nombres}"></td>
+								<td th:text="${tripulante.nacionalidad}"></td>
 
-<!-- Tabla de Noticias -->
-		<div class="card">
-		<div class="card-body">
-		<div class="table-responsive">
-			<table class="table table-striped">
-				<thead class="thead-dark">
-					
-				</thead>
-				<tbody>					
-					<tr>
-									<th scope="col">ID_L</th>
-									<th scope="col">localidad</th>	
-																			    								    									
-									<tr th:each = "localidad:${localidades}">
-								        <td  th:text = "${localidad.id}"></td>
-								        <td  th:text = "${localidad.nombre}"></td>
-					
-								    </tr>
-								    <tr>
-									<th scope="col">ID_V</th>
-									<th scope="col">patente</th>
-									<th scope="col">color</th>
-									<th scope="col">titular</th>
-									<th scope="col">marca</th>
-									<th scope="col">modelo</th>
-									<th scope="col">tipo</th>
-									<th scope="col">numero de chasis</th>
-									<th scope="col">numero de motor</th>	
-	
-								    		
-								    <tr th:each = "vehiculo:${vehiculos}">					     							      
-								        <td  th:text = "${vehiculo.id}"></td>
-								        <td  th:text = "${vehiculo.patente}"></td>
-								        <td  th:text = "${vehiculo.color}"></td>
-								        <td  th:text = "${vehiculo.titular}"></td>
-								        <td  th:text = "${vehiculo.marca}"></td>
-								        <td  th:text = "${vehiculo.modelo}"></td>
-								        <td  th:text = "${vehiculo.tipo}"></td>
-								        <td  th:text = "${vehiculo.numeroChasis}"></td>
-								        <td  th:text = "${vehiculo.numeroMotor}"></td>
+							</tr>
 
-								     							      
-								    </tr>
-								    
-					
-				</tbody>
-			</table>
-			</div></div>
-		</div>
-
-
-
-		<div class="modal fade" id="modalBuscarAutor" tabindex="-1" role="dialog"
-			aria-labelledby="agregarAutorModal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-				<form id="formBuscarAutor" th:object="${autorDelForm}" th:action="@{/buscarAutor}" method="post">
-					<div class="modal-header">
-						<h5 class="modal-title" id="agregarAutorModal">Buscar Autor</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">						
-							<div class="form-group">
-								<label for="apellido">Apellido:</label> <input
-									class="form-control" id="apellido"
-									th:field="${autorDelForm.apellido}"
-									placeholder="Ingresar Apellido"></input>								
-							</div>					
-					</div>				
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<input type="submit" class="btn btn-primary" value="Buscar Autor" >						
-					</div>
-					</form>
-					
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
-		
-<!-- como el modal es el mismo deberia tener una bandera que cambie segun que boton se haya apretado -->
-	 
-		<div class="modal fade" id="modalAgregarAutor" tabindex="-1" role="dialog"
-			aria-labelledby="agregarAutorModal" aria-hidden="true">
+
+		<!-- Tabla de Registros -->
+	<!-- <div class="card">
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="thead-dark">
+
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="col">ID_V</th>
+								<th scope="col">patente</th>
+								<th scope="col">color</th>
+								<th scope="col">titular</th>
+								<th scope="col">marca</th>
+								<th scope="col">modelo</th>
+								<th scope="col">tipo</th>
+								<th scope="col">numero de chasis</th>
+								<th scope="col">numero de motor</th>
+							<tr th:each="vehiculo:${vehiculos}">
+								<td th:text="${vehiculo.id}"></td>
+								<td th:text="${vehiculo.patente}"></td>
+								<td th:text="${vehiculo.color}"></td>
+								<td th:text="${vehiculo.titular}"></td>
+								<td th:text="${vehiculo.marca}"></td>
+								<td th:text="${vehiculo.modelo}"></td>
+								<td th:text="${vehiculo.tipo}"></td>
+								<td th:text="${vehiculo.numeroChasis}"></td>
+								<td th:text="${vehiculo.numeroMotor}"></td>
+
+
+							</tr>
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+-->
+
+
+		<div class="modal fade" id="modalBuscarAutor" tabindex="-1"
+			role="dialog" aria-labelledby="agregarAutorModal" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-				<form id="formAgregarAutor" th:object="${autorDelForm}" th:action="@{/agregarAutor}" method="post">
-					<div class="modal-header">
-						<h5 class="modal-title" id="agregarAutorModal">Agregar Autor</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">						
+					<form id="formBuscarAutor" th:object="${autorDelForm}"
+						th:action="@{/buscarAutor}" method="post">
+						<div class="modal-header">
+							<h5 class="modal-title" id="agregarAutorModal">Buscar Autor</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
 							<div class="form-group">
-							
 								<label for="apellido">Apellido:</label> <input
 									class="form-control" id="apellido"
 									th:field="${autorDelForm.apellido}"
 									placeholder="Ingresar Apellido"></input>
-								<label for="nombre" class="required control-label">Nombre:</label> <input
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+							<input type="submit" class="btn btn-primary" value="Buscar Autor">
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- como el modal es el mismo deberia tener una bandera que cambie segun que boton se haya apretado -->
+
+		<div class="modal fade" id="modalAgregarAutor" tabindex="-1"
+			role="dialog" aria-labelledby="agregarAutorModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<form id="formAgregarAutor" th:object="${autorDelForm}"
+						th:action="@{/agregarAutor}" method="post">
+						<div class="modal-header">
+							<h5 class="modal-title" id="agregarAutorModal">Agregar Autor</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+
+								<label for="apellido">Apellido:</label> <input
+									class="form-control" id="apellido"
+									th:field="${autorDelForm.apellido}"
+									placeholder="Ingresar Apellido"></input> <label for="nombre"
+									class="required control-label">Nombre:</label> <input
 									class="form-control" id="nombre"
 									th:field="${autorDelForm.nombres}"
-									placeholder="Ingresar Nombre" required></input>
-									
-									<label for="documento" class="required control-label">Documento:</label> <input
-									class="form-control" id="documento"
+									placeholder="Ingresar Nombre" required></input> <label
+									for="documento" class="required control-label">Documento:</label>
+								<input class="form-control" id="documento"
 									th:field="${autorDelForm.documento}"
-									placeholder="Ingresar Documento" required></input>
-									
-									<label for="nacionalidad" class="required control-label">Nacionalidad:</label> <input
-									class="form-control" id="nacionalidad"
+									placeholder="Ingresar Documento" required></input> <label
+									for="nacionalidad" class="required control-label">Nacionalidad:</label>
+								<input class="form-control" id="nacionalidad"
 									th:field="${autorDelForm.nacionalidad}"
 									placeholder="Ingresar Nacionalidad" required></input>
-									
-									
-							</div>					
-					</div>				
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<input type="submit" class="btn btn-primary" value="Agregar Autor" >						
-					</div>
+
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+							<input type="submit" class="btn btn-primary"
+								value="Agregar Autor">
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 
-<!-- modal que buscar Autor y Noticia -->
+		<!-- modal que buscar Autor y Noticia -->
 
-		<div class="modal fade" id="modalBuscarNoticiasAutor" tabindex="-1" role="dialog"
-			aria-labelledby="buscarNoticiasAutorModal" aria-hidden="true">
+		<div class="modal fade" id="modalBuscarNoticiasAutor" tabindex="-1"
+			role="dialog" aria-labelledby="buscarNoticiasAutorModal"
+			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-				<form id="formBuscarNoticiasAutor" th:object="${autorDelForm}" th:action="@{/buscarNoticiasAutor}" method="post">
-					<div class="modal-header">
-						<h5 class="modal-title" id="buscarNoticiasAutorModal">Buscar Autor</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">						
+					<form id="formBuscarNoticiasAutor" th:object="${autorDelForm}"
+						th:action="@{/buscarNoticiasAutor}" method="post">
+						<div class="modal-header">
+							<h5 class="modal-title" id="buscarNoticiasAutorModal">Buscar
+								Autor</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
 							<div class="form-group">
 								<label for="apellido">Apellido:</label> <input
 									class="form-control" id="apellido"
 									th:field="${autorDelForm.apellido}"
-									placeholder="Ingresar Apellido"></input>								
-							</div>					
-					</div>				
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<input type="submit" class="btn btn-primary" value="Buscar Autor" >						
-					</div>
+									placeholder="Ingresar Apellido"></input>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+							<input type="submit" class="btn btn-primary" value="Buscar Autor">
+						</div>
 					</form>
-					
+
 				</div>
 			</div>
 		</div>
 
 
 	</div>
-<div class="alert-danger text-center" th:if="${formAutorErrorMessage}" th:text="${formAutorErrorMessage}">Name Error</div>
+	<div class="alert-danger text-center" th:if="${formAutorErrorMessage}"
+		th:text="${formAutorErrorMessage}">Name Error</div>
+
+	<div th:insert="layout/footer :: footer"></div>
 
 </body>
 </html>

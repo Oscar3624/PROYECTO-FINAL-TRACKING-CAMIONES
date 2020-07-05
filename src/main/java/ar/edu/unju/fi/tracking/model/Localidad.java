@@ -37,9 +37,9 @@ public class Localidad implements Serializable {
 	private String nombre;
 
 	// RELACION DE MAPEO
-	@OneToMany(cascade = CascadeType.ALL, 
-			   fetch = FetchType.EAGER)	
-	private List<RegistroTracking> registro;
+	//@OneToMany(cascade = CascadeType.ALL, 
+		//	   fetch = FetchType.LAZY)	
+	//private List<RegistroTracking> registro;
 
 	public Localidad() {
 		// TODO Auto-generated constructor stub
@@ -57,11 +57,11 @@ public class Localidad implements Serializable {
 	 * @param nombre
 	 * @param registro
 	 */
-	public Localidad(long id, String nombre, List<RegistroTracking> registro) {
+	public Localidad(long id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.registro = registro;
+		//this.registro = registro;
 	}
 
 	public long getId() {
@@ -82,18 +82,14 @@ public class Localidad implements Serializable {
 	
 
 	/**
-	 * @return the registro
-	 */
 	public List<RegistroTracking> getRegistro() {
 		return registro;
 	}
 
-	/**
-	 * @param registro the registro to set
-	 */
+	
 	public void setRegistro(List<RegistroTracking> registro) {
 		this.registro = registro;
-	}
+	}*/
 
 	@Override
 	public String toString() {
