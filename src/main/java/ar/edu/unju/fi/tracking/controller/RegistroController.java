@@ -69,23 +69,23 @@ public class RegistroController {
 						
 		model.addAttribute("localidades",localidadService.obtenerLocalidades());
 		model.addAttribute("vehiculos",vehiculoService.obtenerVehiculo());
-		model.addAttribute("autorDelForm", unVehiculo);
+		model.addAttribute("vehiculoDelForm", unVehiculo);
 		model.addAttribute("noticiaDelForm",unRegistroTracking);				
 		model.addAttribute("tripulantes",iTripulanteService.buscarTodosTripulante());
-		model.addAttribute("autorDelForm", unTripulante);
-		model.addAttribute("autorDelForm", unaLocalidad);
+		model.addAttribute("tripulanteDelForm", unTripulante);
+		model.addAttribute("localidadDelForm", unaLocalidad);
 		model.addAttribute("noticiaDelForm",unRegistroTracking);
 		model.addAttribute("noticiaDelForm",unRegistroTracking);
 		return "registroForm";
 	}
 		
 	@PostMapping("/agregarNoticia") // aca dependiendo de los tripulantes y el registro los guarda y despues limpia la lista al final
-	public String crearNoticiaFinal(@ModelAttribute("noticiaDelForm") RegistroTracking registro, Localidad localidad, Vehiculo vehiculo, Model model) {
+	public String crearNoticiaFinal(@ModelAttribute("localidadDelForm") Localidad localidad , @ModelAttribute("vehiculoDelForm") Vehiculo vehiculo, @ModelAttribute("noticiaDelForm") RegistroTracking registro,  Model model) {
 		
 			registro.setTripulante(iTripulanteService.buscarTodosTripulante());
 			try {				
 				
-				//localidadService.guardar(localidad);
+				
 				vehiculoService.guardarVehiculo(vehiculo);
 				iRegistroTrackingService.guardarNoticia(registro);
 				
@@ -98,7 +98,7 @@ public class RegistroController {
 	}
 	
 	@PostMapping("/agregarAutor") // agrega un nuevo tripulante con datos nuevos
-	public String crearAutor(@ModelAttribute("autorDelForm") Tripulante tripulante,  Model model) throws Exception {			
+	public String crearAutor(@ModelAttribute("tripulanteDelForm") Tripulante tripulante,  Model model) throws Exception {			
 			try {			
 				iTripulanteService.guardarTripulante(tripulante);
 			} catch (Exception f) {
@@ -110,7 +110,7 @@ public class RegistroController {
 }
 	
 	@PostMapping("/buscarAutor") // busca a algun tripulante dependiendo si se encuentra en la bd
-	public String buscarAutor(@ModelAttribute("autorDelForm") Tripulante tripulante,  Model model) throws Exception {	
+	public String buscarAutor(@ModelAttribute("tripulanteDelForm") Tripulante tripulante,  Model model) throws Exception {	
 		try {
 			Tripulante tripulanteEncontrado = iTripulanteService.buscarTripulante(tripulante.getApellido());
 			try {			
@@ -126,7 +126,7 @@ public class RegistroController {
 }
 	
 	@PostMapping("/buscarNoticiasAutor")  // creo que busca los vehiculos de algun tripulante ya ingresado
-	public String buscarNoticiasAutor(@ModelAttribute("autorDelForm") Tripulante tripulante,  Model model) throws Exception {	
+	public String buscarNoticiasAutor(@ModelAttribute("tripulanteDelForm") Tripulante tripulante,  Model model) throws Exception {	
 		try {
 			Tripulante tripulanteEncontrado = iTripulanteService.buscarTripulante(tripulante.getApellido());
 			try {			
