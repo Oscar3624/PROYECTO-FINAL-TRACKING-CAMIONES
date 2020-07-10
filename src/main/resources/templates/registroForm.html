@@ -39,7 +39,16 @@
 
 		<form id="formNoticia" th:object="${vehiculoDelForm}"
 			th:action="@{/agregarNoticia}" method="post" class="row">
-
+			
+							
+							
+							
+							
+							
+			
+			
+			
+			
 			<!-- inicio vehiculo -->
 			<div class="col-md-12">
 				<div class="card">
@@ -84,16 +93,101 @@
 							<label>Numero Motor</label> <input
 								th:field="${vehiculoDelForm.numeroMotor}" type="text"
 								class="form-control" />
-
+						
+						
+						
+						
 						</div>
+					
+						
 					</div>
 				</div>
 
 			</div>
-
+			
 			<!-- fin vehiculo -->
+			
+			<!-- Detalle del lugar inicio -->
+			<div class="col-md-12">
+				<div class="card">
+				<div class="card-header">
+						<h6>Detalle del lugar</h6>
+					</div>
+					<div class="card-body">
+					<div class="form-group row">
+							<input th:field="${noticiaDelForm.detalleLugarRegistro}"
+								type="text" class="form-control" />
+						</div>
+						</div>
+				</div>
+			</div>
+			<!-- Detalle del lugar final -->
+			<!-- FECHA Y HORA INICIO  lo puse visible momentaneamente, despues debe ir oculto-->
+			<div class="col-md-12">
+				<div class="card">
+				<div class="card-header">
+					<h6>fecha y hora</h6>
+					</div>
+					<div class="card-body">
+					<div class="form-group row">
+			<input type="text" id="fecha"/><input type="hidden"
+							th:field="${noticiaDelForm.fechaHora}" />
+							
+			</div>
+			</div>
+				</div>
+			</div>
+<script>
+  const letrero = document.querySelector("#fecha")
 
-			<!-- inicio localidad  sacando localidad funciona-->
+  const fecha = new Date();            
+  let anio = fecha.getFullYear()
+  let mes = fecha.getMonth()+1
+  let dia = fecha.getDate()
+
+  marcacion = new Date()  
+
+	/* CAPTURAMOS LA HORA */ 
+Hora = marcacion.getHours()  
+
+	/* CAPTURAMOS LOS MINUTOS */ 
+Minutos = marcacion.getMinutes()  
+
+	/* CAPTURAMOS LOS SEGUNDOS */ 
+Segundos = marcacion.getSeconds()
+
+/* SI LA HORA, LOS MINUTOS O LOS SEGUNDOS 
+SIN MENORES O IGUAL A 9, LE AÑADIMOS UN 0 */ 
+
+if (Hora<=9) 
+Hora = "0" + Hora 
+
+if (Minutos<=9) 
+Minutos = "0" + Minutos 
+
+if (Segundos<=9) 
+Segundos = "0" + Segundos
+
+  if(dia < 10){
+  dia='0'+dia
+  }
+  if(mes < 10){
+  mes='0'+mes
+  }
+  
+  
+  
+  letrero.value = `${dia} / ${mes} / ${anio} - ${Hora} : ${Minutos} : ${Segundos}`
+  
+</script>
+
+<!-- FECHA Y HORA FINAL -->
+
+			
+									
+						
+									
+			<!-- inicio localidad  -->
 
 						<div class="form-group row">
 
@@ -104,7 +198,7 @@
 						th:value="${localidad.id}" th:text="${localidad.nombre}" />
 				</select>
 
-
+				
 			</div>
 			<!-- fin localidad  -->
 			<div class="form-group row">
