@@ -121,14 +121,14 @@ public class RegistroController {
 	@PostMapping("/buscarVehiculo")
 	public String buscarVehiculo(@ModelAttribute("vehiculoDelForm") Vehiculo vehiculo, Model model) throws Exception {
 		try {
-			Vehiculo vehiculoEncontrado = vehiculoService.buscarVehiculo(vehiculo.getPatente());
+			vehiculoEncontrado = vehiculoService.buscarVehiculo(vehiculo.getPatente());
 			try {
 				vehiculoService.guardarVehiculo(vehiculoEncontrado);
 			}catch(Exception e) {
 				
 				model.addAttribute("formVehiculoErrorMessage", e.getMessage());
 			}
-			//model.addAttribute("vehiculoEncontrado", vehiculoEncontrado);
+			model.addAttribute("vehiculoEncontrado", vehiculoEncontrado);
 			
 		} catch (Exception e) {
 			model.addAttribute("formVehiculoErrorMessage", e.getMessage());
