@@ -8,9 +8,9 @@ import ar.edu.unju.fi.tracking.model.Vehiculo;
 public interface IVehiculoService {
 	
 
- public void guardarVehiculo(Vehiculo vehiculo);
+	public void guardarVehiculo(Vehiculo vehiculo);
 	public List<Vehiculo> obtenerVehiculo();
-	public Vehiculo mostrar();
+	public Vehiculo buscarVehiculo(String patente);
 	public void eliminar(Long id);
 	public Vehiculo modificar(Vehiculo vehiculo) throws Exception;
 	public Vehiculo encontrarVehiculo(Long id) throws Exception;

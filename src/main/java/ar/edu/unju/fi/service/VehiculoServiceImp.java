@@ -27,11 +27,6 @@ public class VehiculoServiceImp implements IVehiculoService{
 		return vehiculoDAOImp.findAll();
 	}
 
-	@Override
-	public Vehiculo mostrar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void eliminar(Long id) {
@@ -49,6 +44,11 @@ public class VehiculoServiceImp implements IVehiculoService{
 	public Vehiculo encontrarVehiculo(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Vehiculo buscarVehiculo(String patente) {
+		return vehiculoDAOImp.findByPatente(patente);
 	}
 	
 

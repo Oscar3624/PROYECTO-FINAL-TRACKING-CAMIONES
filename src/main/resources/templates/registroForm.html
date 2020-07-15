@@ -18,7 +18,7 @@
 }
 </style>
 
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
 <title>Registro Tracking</title>
 <link rel="stylesheet" type="text/css" href="css/estilos.css">
 <link rel="stylesheet" type="text/css"
@@ -28,185 +28,15 @@
 <body>
 
 	<div th:insert="layout/header :: header"></div>
-	<div class="container-fluid">
-
+	
 		<button type="button" class="btn btn-success" data-toggle="modal"
-			data-target="#modalBuscarAutor">Buscar tripulante</button>
+			data-target="#modalBuscarTripulante">Buscar tripulante</button>
 		<button type="button" class="btn btn-success" data-toggle="modal"
-			data-target="#modalAgregarAutor">Agregar tripulante</button>
-		<button type="button" class="btn btn-success" data-toggle="modal"
-			data-target="#modalBuscarNoticiasAutor">Agregar Tripulante</button>
+			data-target="#modalAgregarTripulante">Agregar tripulante</button>
 
-		<form id="formNoticia" th:object="${vehiculoDelForm}"
-			th:action="@{/agregarNoticia}" method="post" class="row">
-			
-							
-							
-							
-							
-							
-			
-			
-			
-			
-			<!-- inicio vehiculo -->
-			<div class="col-md-12">
-				<div class="card">
-					<div class="card-header">
-						<h3>Vehiculo</h3>
-					</div>
-					<div class="card-body">
-						<input type="hidden" th:field="*{id}" /> <input type="hidden"
-							th:field="${vehiculoDelForm.id}" />
+		<!-- inicio Tripulante -->
 
-
-						<div class="form-group row">
-							<label>Patente</label> <input th:field="${vehiculoDelForm.patente}"
-								type="text" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>Color</label> <input th:field="${vehiculoDelForm.color}"
-								type="text" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>Titular</label> <input th:field="${vehiculoDelForm.titular}"
-								type="text" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>Marca</label> <input th:field="${vehiculoDelForm.marca}"
-								type="text" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>Modelo</label> <input th:field="${vehiculoDelForm.modelo}"
-								type="text" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>Tipo</label> <input th:field="${vehiculoDelForm.tipo}"
-								type="text" class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>Numero de Chasis</label> <input
-								th:field="${vehiculoDelForm.numeroChasis}" type="text"
-								class="form-control" />
-						</div>
-						<div class="form-group">
-							<label>Numero Motor</label> <input
-								th:field="${vehiculoDelForm.numeroMotor}" type="text"
-								class="form-control" />
-						
-						
-						
-						
-						</div>
-					
-						
-					</div>
-				</div>
-
-			</div>
-			
-			<!-- fin vehiculo -->
-			
-			<!-- Detalle del lugar inicio -->
-			<div class="col-md-12">
-				<div class="card">
-				<div class="card-header">
-						<h6>Detalle del lugar</h6>
-					</div>
-					<div class="card-body">
-					<div class="form-group row">
-							<input th:field="${noticiaDelForm.detalleLugarRegistro}"
-								type="text" class="form-control" />
-						</div>
-						</div>
-				</div>
-			</div>
-			<!-- Detalle del lugar final -->
-			<!-- FECHA Y HORA INICIO  lo puse visible momentaneamente, despues debe ir oculto-->
-			<div class="col-md-12">
-				<div class="card">
-				<div class="card-header">
-					<h6>fecha  y hora</h6>
-					</div>
-					<div class="card-body">
-					<div class="form-group row">
-			<input type="text" id="fecha"/><input type="hidden"
-							th:field="${noticiaDelForm.fechaHora}" />
-							
-			</div>
-			</div>
-				</div>
-			</div>
-<script>
-  const letrero = document.querySelector("#fecha")
-
-  const fecha = new Date();            
-  let anio = fecha.getFullYear()
-  let mes = fecha.getMonth()+1
-  let dia = fecha.getDate()
-
-  marcacion = new Date()  
-
-	/* CAPTURAMOS LA HORA */ 
-Hora = marcacion.getHours()  
-
-	/* CAPTURAMOS LOS MINUTOS */ 
-Minutos = marcacion.getMinutes()  
-
-	/* CAPTURAMOS LOS SEGUNDOS */ 
-Segundos = marcacion.getSeconds()
-
-/* SI LA HORA, LOS MINUTOS O LOS SEGUNDOS 
-SIN MENORES O IGUAL A 9, LE AÑADIMOS UN 0 */ 
-
-if (Hora<=9) 
-Hora = "0" + Hora 
-
-if (Minutos<=9) 
-Minutos = "0" + Minutos 
-
-if (Segundos<=9) 
-Segundos = "0" + Segundos
-
-  if(dia < 10){
-  dia='0'+dia
-  }
-  if(mes < 10){
-  mes='0'+mes
-  }
-  
-  
-  
-  letrero.value = `${dia} / ${mes} / ${anio} - ${Hora} : ${Minutos} : ${Segundos}`
-  
-</script>
-
-<!-- FECHA Y HORA FINAL -->
-
-			
-									
-						
-									
-			<!-- inicio localidad  -->
-
-						<div class="form-group row">
-
-				<label class="col-md-4" for="localidad">Localidad</label> <select
-					th:field="${localidadDelForm}"
-					class="from-control form-control-sm col-md-8" id="localidad">
-					<option th:each="localidad:${localidades}"
-						th:value="${localidad.id}" th:text="${localidad.nombre}" />
-				</select>
-
-				
-			</div>
-			<!-- fin localidad  -->
-			<div class="form-group row">
-				<button type="submit" class="btn btn-primary">Agregar
-					Registro</button>
-			</div>
-		</form>
-		<!-- se deberia agregar otro boton Cancelar para que si no quiero guardar noticia, NO se guarde el Autor en el Listado -->
+		<!-- tabla tripulantes -->
 		<div class="card">
 			<div class="card-body">
 				<div class="table-responsive">
@@ -236,8 +66,320 @@ Segundos = "0" + Segundos
 			</div>
 		</div>
 
-		<!-- Tabla de Registros -->
-	<!-- <div class="card">
+		<!-- buscar tripulante  -->
+		<div class="modal fade" id="modalBuscarTripulante" tabindex="-1"
+			role="dialog" aria-labelledby="agregarTripulanteModal"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<form id="formBuscarTripulante" th:object="${tripulanteDelForm}"
+						th:action="@{/buscarTripulante}" method="post">
+						<div class="modal-header">
+							<h5 class="modal-title" id="agregarTripulanteModal">Buscar
+								Tripulante</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="dni">Dni:</label> <input class="form-control"
+									id="dni" th:field="${tripulanteDelForm.documento}"
+									placeholder="Ingresar dni"></input>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Cancelar</button>
+							<input type="submit" class="btn btn-primary"
+								value="Buscar Tripulante">
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+
+		<!-- nuevo tripulante -->
+		<div class="modal fade" id="modalAgregarTripulante" tabindex="-1"
+			role="dialog" aria-labelledby="agregarTripulanteModal"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<form id="formAgregarTripulante" th:object="${tripulanteDelForm}"
+						th:action="@{/agregarTripulante}" method="post">
+						<div class="modal-header">
+							<h5 class="modal-title" id="agregarTripulanteModal">Agregar
+								Tripulante</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+
+								<label for="apellido">Apellido:</label> <input
+									class="form-control" id="apellido"
+									th:field="${tripulanteDelForm.apellido}"
+									placeholder="Ingresar Apellido"></input> <label for="nombre"
+									class="required control-label">Nombre:</label> <input
+									class="form-control" id="nombre"
+									th:field="${tripulanteDelForm.nombres}"
+									placeholder="Ingresar Nombre" required></input> <label
+									for="documento" class="required control-label">Documento:</label>
+								<input class="form-control" id="documento"
+									th:field="${tripulanteDelForm.documento}"
+									placeholder="Ingresar Documento" required></input> <label
+									for="nacionalidad" class="required control-label">Nacionalidad:</label>
+								<input class="form-control" id="nacionalidad"
+									th:field="${tripulanteDelForm.nacionalidad}"
+									placeholder="Ingresar Nacionalidad" required></input>
+
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Cancelar</button>
+							<input type="submit" class="btn btn-primary"
+								value="Agregar Tripulante">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- fin tripulante -->
+
+
+		<!-- inicio Vehiculo -->
+		<button type="button" class="btn btn-success" data-toggle="modal"
+			data-target="#modalBuscarVehiculo">Buscar vehiculo</button>
+		<button type="button" class="btn btn-success" data-toggle="modal"
+			data-target="#modalAgregarVehiculo">Agregar Vehiculo</button>
+
+		<!-- tabla buscar vehiculo -->
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">PATENTE</th>
+							<th scope="col">COLOR</th>
+							<th scope="col">TITULAR</th>
+							<th scope="col">MARCA</th>
+							<th scope="col">MODELO</th>
+							<th scope="col">TIPO</th>
+							<th scope="col">NUMERO CHASIS</th>
+							<th scope="col">NUMERO MOTOR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="vehiculo : ${vehiculos}">
+							<td th:text="${vehiculo.patente}"></td>
+							<td th:text="${vehiculo.color}"></td>
+							<td th:text="${vehiculo.titular}"></td>
+							<td th:text="${vehiculo.marca}"></td>
+							<td th:text="${vehiculo.modelo}"></td>
+							<td th:text="${vehiculo.tipo}"></td>
+							<td th:text="${vehiculo.numeroChasis}"></td>
+							<td th:text="${vehiculo.numeroMotor}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="modal fade" id="modalBuscarVehiculo" tabindex="-1"
+			role="dialog" aria-labelledby="agregarVehiculoModal"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<form id="formBuscarVehiculo" th:object="${vehiculo}"
+						th:action="@{/buscarVehiculo}" method="post">
+						<div class="modal-header">
+							<h5 class="modal-title" id="agregarVehiculoModal">Buscar
+								Vehiculo</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="patente">Patente:</label> <input
+									class="form-control" id="patente"
+									th:field="${vehiculo.patente}" placeholder="Ingresar Patente"></input>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+							<input type="submit" class="btn btn-primary"
+								value="Buscar Vehiculo">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+			
+		<!-- lista vehiculo nuevo -->
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">PATENTE</th>
+							<th scope="col">COLOR</th>
+							<th scope="col">TITULAR</th>
+							<th scope="col">MARCA</th>
+							<th scope="col">MODELO</th>
+							<th scope="col">TIPO</th>
+							<th scope="col">NUMERO CHASIS</th>
+							<th scope="col">NUMERO MOTOR</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="vehiculo : ${vehiculoNuevo}">
+							<td th:text="${vehiculo.patente}"></td>
+							<td th:text="${vehiculo.color}"></td>
+							<td th:text="${vehiculo.titular}"></td>
+							<td th:text="${vehiculo.marca}"></td>
+							<td th:text="${vehiculo.modelo}"></td>
+							<td th:text="${vehiculo.tipo}"></td>
+							<td th:text="${vehiculo.numeroChasis}"></td>
+							<td th:text="${vehiculo.numeroMotor}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+		<!-- nuevo vehiculo -->
+		<div class="modal fade" id="modalAgregarVehiculo" tabindex="-1"
+			role="dialog" aria-labelledby="agregarVehiculoModal"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<form id="formAgregarVehiculo" th:object="${vehiculo}"
+						th:action="@{/agregarVehiculo}" method="post">
+						<div class="modal-header">
+							<h5 class="modal-title" id="agregarVehiculoModal">Agregar
+								Vehiculo</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="patente" class="required control-label">PATENTE:
+								</label> <input class="form-control" id="patente"
+									th:field="${vehiculo.patente}" placeholder="Ingresar PATENTE"
+									required></input> <label for="apellido"
+									class="required control-label">COLOR: </label> <input
+									class="form-control" id="color" th:field="${vehiculo.color}"
+									placeholder="Ingresar COLOR" required></input> <label
+									for="documento" class="required control-label">TITULAR:
+								</label> <input class="form-control" id="titular"
+									th:field="${vehiculo.titular}" placeholder="Ingresar TITULAR"
+									required></input> <label for="apellido"
+									class="required control-label">MARCA: </label> <input
+									class="form-control" id="marca" th:field="${vehiculo.marca}"
+									placeholder="Ingresar MARCA" required></input> <label
+									for="documento" class="required control-label">MODELO:
+								</label> <input class="form-control" id="modelo"
+									th:field="${vehiculo.modelo}" placeholder="Ingresar MODELO"
+									required></input> <label for="apellido"
+									class="required control-label">TIPO: </label> <input
+									class="form-control" id="tipo" th:field="${vehiculo.tipo}"
+									placeholder="Ingresar TIPO" required></input> <label
+									for="documento" class="required control-label">NUMERO
+									DE CHASIS: </label> <input class="form-control" id="numeroChasis"
+									th:field="${vehiculo.numeroChasis}"
+									placeholder="Ingresar NUMERO DE CHASIS" required></input> <label
+									for="apellido" class="required control-label">NUMERO
+									MOTOR: </label> <input class="form-control" id="numeroMotor"
+									th:field="${vehiculo.numeroMotor}"
+									placeholder="Ingresar NUMERO MOTOR" required></input>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Cancelar</button>
+							<input type="submit" class="btn btn-primary"
+								value="Agregar Vehiculo">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- formulario registro  -->
+
+		<form id="formRegistro" th:object="${registro}"
+			th:action="@{/saveRegistro}" method="post">
+			<input type="hidden" th:field="*{id}" />
+
+			<!-- inicio localidad  -->
+
+			<div class="form-group row">
+
+				<label class="col-md-4" for="localidad">Localidad</label> <select
+					th:field="${registro.localidad.id}"
+					class="from-control form-control-sm col-md-8" id="localidad">
+					<option th:each="localidad:${localidades}"
+						th:value="${localidad.id}" th:text="${localidad.nombre}" />
+				</select>
+
+
+			</div>
+			<!-- fin localidad  -->
+
+			<!-- Detalle del lugar inicio -->
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<h6>Detalle del lugar</h6>
+					</div>
+					<div class="card-body">
+						<div class="form-group row">
+							<textarea th:field="${registro.detalleLugarRegistro}" rows="5"
+								class="form-control"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Detalle del lugar final -->
+
+			<div class="form-group row">
+				<input type="submit" class="btn btn-primary" value="Guardar" />
+
+			</div>
+		</form>
+
+
+
+		<div class="alert-danger text-center" th:if="${formAutorErrorMessage}"
+			th:text="${formAutorErrorMessage}">Name Error</div>
+
+		<div th:insert="layout/footer :: footer"></div>
+</body>
+</html>
+<!-- fin html -->
+
+
+
+
+<!-- Tabla de Registros -->
+<!-- <div class="card">
 			<div class="card-body">
 				<div class="table-responsive">
 					<table class="table table-striped">
@@ -276,131 +418,3 @@ Segundos = "0" + Segundos
 			</div>
 		</div>
 -->
-
-
-		<div class="modal fade" id="modalBuscarAutor" tabindex="-1"
-			role="dialog" aria-labelledby="agregarAutorModal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<form id="formBuscarAutor" th:object="${tripulanteDelForm}"
-						th:action="@{/buscarAutor}" method="post">
-						<div class="modal-header">
-							<h5 class="modal-title" id="agregarAutorModal">Buscar Autor</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<div class="form-group">
-								<label for="apellido">Apellido:</label> <input
-									class="form-control" id="apellido"
-									th:field="${tripulanteDelForm.apellido}"
-									placeholder="Ingresar Apellido"></input>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Close</button>
-							<input type="submit" class="btn btn-primary" value="Buscar Autor">
-						</div>
-					</form>
-
-				</div>
-			</div>
-		</div>
-
-		<!-- como el modal es el mismo deberia tener una bandera que cambie segun que boton se haya apretado -->
-
-		<div class="modal fade" id="modalAgregarAutor" tabindex="-1"
-			role="dialog" aria-labelledby="agregarAutorModal" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<form id="formAgregarAutor" th:object="${tripulanteDelForm}"
-						th:action="@{/agregarAutor}" method="post">
-						<div class="modal-header">
-							<h5 class="modal-title" id="agregarAutorModal">Agregar Autor</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<div class="form-group">
-
-								<label for="apellido">Apellido:</label> <input
-									class="form-control" id="apellido"
-									th:field="${tripulanteDelForm.apellido}"
-									placeholder="Ingresar Apellido"></input> <label for="nombre"
-									class="required control-label">Nombre:</label> <input
-									class="form-control" id="nombre"
-									th:field="${tripulanteDelForm.nombres}"
-									placeholder="Ingresar Nombre" required></input> <label
-									for="documento" class="required control-label">Documento:</label>
-								<input class="form-control" id="documento"
-									th:field="${tripulanteDelForm.documento}"
-									placeholder="Ingresar Documento" required></input> <label
-									for="nacionalidad" class="required control-label">Nacionalidad:</label>
-								<input class="form-control" id="nacionalidad"
-									th:field="${tripulanteDelForm.nacionalidad}"
-									placeholder="Ingresar Nacionalidad" required></input>
-
-
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Close</button>
-							<input type="submit" class="btn btn-primary"
-								value="Agregar Autor">
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-
-		<!-- modal que buscar Autor y Noticia -->
-
-		<div class="modal fade" id="modalBuscarNoticiasAutor" tabindex="-1"
-			role="dialog" aria-labelledby="buscarNoticiasAutorModal"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<form id="formBuscarNoticiasAutor" th:object="${tripulanteDelForm}"
-						th:action="@{/buscarNoticiasAutor}" method="post">
-						<div class="modal-header">
-							<h5 class="modal-title" id="buscarNoticiasAutorModal">Buscar
-								Autor</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<div class="form-group">
-								<label for="apellido">Apellido:</label> <input
-									class="form-control" id="apellido"
-									th:field="${tripulanteDelForm.apellido}"
-									placeholder="Ingresar Apellido"></input>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Close</button>
-							<input type="submit" class="btn btn-primary" value="Buscar Autor">
-						</div>
-					</form>
-
-				</div>
-			</div>
-		</div>
-
-
-	</div>
-	<div class="alert-danger text-center" th:if="${formAutorErrorMessage}"
-		th:text="${formAutorErrorMessage}">Name Error</div>
-
-	<div th:insert="layout/footer :: footer"></div>
-
-</body>
-</html>

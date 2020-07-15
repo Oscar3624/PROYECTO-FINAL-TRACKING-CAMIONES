@@ -55,29 +55,42 @@ public class RegistroTracking implements Serializable {
 	@Column(name = "DETALLE_LUGAR_REGISTRO")
 	private String detalleLugarRegistro;
 
+	/**
+	 * Contructor por defecto
+	 */
 	public RegistroTracking() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * public RegistroTracking(LocalDateTime fechaHora, Vehiculo vehiculo,
-	 * List<Tripulante> tripulantes, Localidad localidad, String
-	 * detalleLugarRegistro) { super(); this.fechaHora = fechaHora; this.vehiculo =
-	 * vehiculo; this.tripulantes = tripulantes; this.localidad = localidad;
-	 * this.detalleLugarRegistro = detalleLugarRegistro; }
+	 * 
+	 * @param id
+	 * @param fechaHora
+	 * @param vehiculo
+	 * @param tripulante
+	 * @param localidad
+	 * @param detalleLugarRegistro
+	 * 
+	 * Constructor parametrizado
 	 */
-
-	public RegistroTracking(long id, LocalDateTime fechaHora, Vehiculo vehiculo, Localidad localidad,
-			String detalleLugarRegistro) {
+	public RegistroTracking(long id, LocalDateTime fechaHora, Vehiculo vehiculo, List<Tripulante> tripulante,
+			Localidad localidad, String detalleLugarRegistro) {
 		super();
 		this.id = id;
 		this.fechaHora = fechaHora;
 		this.vehiculo = vehiculo;
-		// this.tripulante = tripulante;
+		this.tripulante = tripulante;
 		this.localidad = localidad;
 		this.detalleLugarRegistro = detalleLugarRegistro;
 	}
 
+
+	//getters and setters
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public long getId() {
 		return id;
 	}
@@ -109,13 +122,6 @@ public class RegistroTracking implements Serializable {
 	public void setTripulante(List<Tripulante> tripulante) {
 		this.tripulante = tripulante;
 	}
-
-	/**
-	 * public List<Tripulante> getTripulantes() { return tripulantes; }
-	 * 
-	 * public void setTripulantes(List<Tripulante> tripulantes) { this.tripulantes =
-	 * tripulantes; }
-	 **/
 
 	public Localidad getLocalidad() {
 		return localidad;

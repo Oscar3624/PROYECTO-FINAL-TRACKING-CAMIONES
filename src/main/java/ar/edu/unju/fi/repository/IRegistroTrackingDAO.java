@@ -7,13 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import ar.edu.unju.fi.tracking.model.RegistroTracking;
 
-
-
 public interface IRegistroTrackingDAO extends JpaRepository<RegistroTracking, Long>{
-	/**public void guardar();
-	public RegistroTracking mostrar();
-	public void eliminar();
-	public RegistroTracking modificar();
-	*/
-
+	
+	@Query("from RegistroTracking e order by e.detalleLugarRegistro")
+	public List<RegistroTracking> obtenerRegistros();
 }

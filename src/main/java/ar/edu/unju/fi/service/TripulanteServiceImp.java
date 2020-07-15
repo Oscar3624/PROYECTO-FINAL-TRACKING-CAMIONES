@@ -30,9 +30,9 @@ public class TripulanteServiceImp implements ITripulanteService{
 	}
 
 	@Override
-	public Tripulante buscarTripulante(String apellido) throws Exception {
+	public Tripulante buscarTripulante(String documento) throws Exception {
 		// TODO Auto-generated method stub
-		return tripulanteDAOImp.findByApellido(apellido).orElseThrow(()-> new Exception("El tripulante no Existe"));
+		return tripulanteDAOImp.findByDocumento(documento).orElseThrow(()-> new Exception("El tripulante no Existe"));
 	}
 
 	@Override
