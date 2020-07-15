@@ -56,7 +56,9 @@ public class RegistroController {
 		model.addAttribute("localidades", localidadService.obtenerLocalidades());
 		model.addAttribute("tripulantes", iTripulanteService.buscarTodosTripulante());
 		model.addAttribute("tripulanteDelForm", unTripulante);
-		model.addAttribute("vehiculo", unVehiculo);
+		model.addAttribute("vehiculos", vehiculoService.obtenerVehiculo());
+		model.addAttribute("vehiculoDelForm", unVehiculo);
+		
 		
 		return "registroForm";
 	}
@@ -92,7 +94,7 @@ public class RegistroController {
 	public String buscarTripulante(@ModelAttribute("tripulanteDelForm") Tripulante tripulante, Model model)
 			throws Exception {
 		try {
-			Tripulante tripulanteEncontrado = iTripulanteService.buscarTripulante(tripulante.getApellido());
+			Tripulante tripulanteEncontrado = iTripulanteService.buscarTripulante(tripulante.getDocumento());
 			try {
 				iTripulanteService.guardarTripulanteEncontrado(tripulanteEncontrado);
 			} catch (Exception e) {
@@ -117,10 +119,16 @@ public class RegistroController {
 	 * @throws Exception
 	 */
 	@PostMapping("/buscarVehiculo")
-	public String buscarVehiculo(@ModelAttribute("vehiculo") Vehiculo vehiculo, Model model) throws Exception {
+	public String buscarVehiculo(@ModelAttribute("vehiculoDelForm") Vehiculo vehiculo, Model model) throws Exception {
 		try {
-			vehiculoEncontrado = vehiculoService.buscarVehiculo(vehiculo.getPatente());
-			model.addAttribute("vehiculoEncontrado", vehiculoEncontrado);
+			Vehiculo vehiculoEncontrado = vehiculoService.buscarVehiculo(vehiculo.getPatente());
+			try {
+				vehiculoService.guardarVehiculo(vehiculoEncontrado);
+			}catch(Exception e) {
+				
+				model.addAttribute("formVehiculoErrorMessage", e.getMessage());
+			}
+			//model.addAttribute("vehiculoEncontrado", vehiculoEncontrado);
 			
 		} catch (Exception e) {
 			model.addAttribute("formVehiculoErrorMessage", e.getMessage());
@@ -130,8 +138,10 @@ public class RegistroController {
 	}
 
 	
+	
+	
 	@PostMapping("/agregarVehiculo")
-	public String crearVehiculo(@ModelAttribute("vehiculo") Vehiculo vehiculo, Model model) throws Exception {
+	public String crearVehiculo(@ModelAttribute("vehiculoDelForm") Vehiculo vehiculo, Model model) throws Exception {
 		try {
 			vehiculoService.guardarVehiculo(vehiculo);
 			vehiculoNuevo = vehiculo;
@@ -144,6 +154,7 @@ public class RegistroController {
 		return agregar(model);
 
 	}
+	
 
 
 	@PostMapping("/saveRegistro")
@@ -157,8 +168,9 @@ public class RegistroController {
 				registro.setVehiculo(vehiculoNuevo);
 			}
 		}
-
+		
 		registro.setTripulante(iTripulanteService.buscarTodosTripulante());
+		
 		try {
 			iRegistroTrackingService.guardarRegistro(registro);
 
@@ -166,6 +178,7 @@ public class RegistroController {
 			model.addAttribute("formTripulanteErrorMessage", e.getMessage());
 		}
 		iTripulanteService.borrarTodosTripulante();
+		vehiculoService.borrartodosV();
 		return "redirect:/nuevoRegistro";
 	}
 	

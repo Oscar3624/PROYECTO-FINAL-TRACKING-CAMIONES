@@ -198,7 +198,7 @@
 			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-					<form id="formBuscarVehiculo" th:object="${vehiculo}"
+					<form id="formBuscarVehiculo" th:object="${vehiculoDelForm}"
 						th:action="@{/buscarVehiculo}" method="post">
 						<div class="modal-header">
 							<h5 class="modal-title" id="agregarVehiculoModal">Buscar
@@ -212,7 +212,7 @@
 							<div class="form-group">
 								<label for="patente">Patente:</label> <input
 									class="form-control" id="patente"
-									th:field="${vehiculo.patente}" placeholder="Ingresar Patente"></input>
+									th:field="${vehiculoDelForm.patente}" placeholder="Ingresar Patente"></input>
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -266,7 +266,7 @@
 			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-					<form id="formAgregarVehiculo" th:object="${vehiculo}"
+					<form id="formAgregarVehiculo" th:object="${vehiculoDelForm}"
 						th:action="@{/agregarVehiculo}" method="post">
 						<div class="modal-header">
 							<h5 class="modal-title" id="agregarVehiculoModal">Agregar
@@ -280,32 +280,32 @@
 							<div class="form-group">
 								<label for="patente" class="required control-label">PATENTE:
 								</label> <input class="form-control" id="patente"
-									th:field="${vehiculo.patente}" placeholder="Ingresar PATENTE"
+									th:field="${vehiculoDelForm.patente}" placeholder="Ingresar PATENTE"
 									required></input> <label for="apellido"
 									class="required control-label">COLOR: </label> <input
-									class="form-control" id="color" th:field="${vehiculo.color}"
+									class="form-control" id="color" th:field="${vehiculoDelForm.color}"
 									placeholder="Ingresar COLOR" required></input> <label
 									for="documento" class="required control-label">TITULAR:
 								</label> <input class="form-control" id="titular"
-									th:field="${vehiculo.titular}" placeholder="Ingresar TITULAR"
+									th:field="${vehiculoDelForm.titular}" placeholder="Ingresar TITULAR"
 									required></input> <label for="apellido"
 									class="required control-label">MARCA: </label> <input
-									class="form-control" id="marca" th:field="${vehiculo.marca}"
+									class="form-control" id="marca" th:field="${vehiculoDelForm.marca}"
 									placeholder="Ingresar MARCA" required></input> <label
 									for="documento" class="required control-label">MODELO:
 								</label> <input class="form-control" id="modelo"
-									th:field="${vehiculo.modelo}" placeholder="Ingresar MODELO"
+									th:field="${vehiculoDelForm.modelo}" placeholder="Ingresar MODELO"
 									required></input> <label for="apellido"
 									class="required control-label">TIPO: </label> <input
-									class="form-control" id="tipo" th:field="${vehiculo.tipo}"
+									class="form-control" id="tipo" th:field="${vehiculoDelForm.tipo}"
 									placeholder="Ingresar TIPO" required></input> <label
 									for="documento" class="required control-label">NUMERO
 									DE CHASIS: </label> <input class="form-control" id="numeroChasis"
-									th:field="${vehiculo.numeroChasis}"
+									th:field="${vehiculoDelForm.numeroChasis}"
 									placeholder="Ingresar NUMERO DE CHASIS" required></input> <label
 									for="apellido" class="required control-label">NUMERO
 									MOTOR: </label> <input class="form-control" id="numeroMotor"
-									th:field="${vehiculo.numeroMotor}"
+									th:field="${vehiculoDelForm.numeroMotor}"
 									placeholder="Ingresar NUMERO MOTOR" required></input>
 							</div>
 						</div>

@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +15,19 @@ public class VehiculoServiceImp implements IVehiculoService{
 	
 	@Autowired
 	IVehiculoDAO vehiculoDAOImp;
+	private List<Vehiculo> listadoAuxiliar = new ArrayList<>();
 	
 	@Override
 	public void guardarVehiculo(Vehiculo vehiculo) {
 		// TODO Auto-generated method stub
 		vehiculoDAOImp.save(vehiculo);
+		listadoAuxiliar.add(vehiculo);
 	}
 
 	@Override
 	public List<Vehiculo> obtenerVehiculo() {
 		// TODO Auto-generated method stub
-		return vehiculoDAOImp.findAll();
+		return listadoAuxiliar;
 	}
 
 
@@ -47,8 +50,21 @@ public class VehiculoServiceImp implements IVehiculoService{
 	}
 
 	@Override
-	public Vehiculo buscarVehiculo(String patente) {
-		return vehiculoDAOImp.findByPatente(patente);
+	public Vehiculo buscarVehiculo(String patente) throws Exception {
+		return vehiculoDAOImp.findByPatente(patente).orElseThrow(()-> new Exception("El vehiculo no Existe"));
+	}
+
+	@Override
+	public void guardarVehiculoEncontrado(Vehiculo vehiculo) {
+		// TODO Auto-generated method stub
+		listadoAuxiliar.add(vehiculo);
+	}
+
+	@Override
+	public void borrartodosV() {
+		// TODO Auto-generated method stub
+		listadoAuxiliar = new ArrayList<>();
+		
 	}
 	
 
