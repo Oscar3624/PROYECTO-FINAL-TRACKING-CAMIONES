@@ -48,6 +48,7 @@ public class Usuario implements Serializable{
 	
 	
 	@Column(name = "TIPO")
+	@NotBlank(message="El tipo no puede quedar en blanco")
 	private String tipoUsuario;//consultor, registrador, bd
 	
 	public Usuario() {
